@@ -5,6 +5,9 @@ public class Player : MonoBehaviour {
 	private MazeCell currentCell;
 	private MazeDirection currentDirection;
 
+	private MazeCell keyCell;
+	public bool hasKey = false;
+
 	private void Rotate(MazeDirection direction){
 		transform.localRotation = direction.ToRotation ();
 		currentDirection = direction;
@@ -17,6 +20,11 @@ public class Player : MonoBehaviour {
 		currentCell = cell;
 		transform.localPosition = cell.transform.localPosition;
 		currentCell.OnPlayerEntered ();
+	}
+
+	public void Set_Key_Cell_Location(MazeCell cell)
+	{
+		keyCell = cell;
 	}
 
 	private void Move(MazeDirection direction){
@@ -45,6 +53,11 @@ public class Player : MonoBehaviour {
 		}
 		else if (Input.GetKeyDown(KeyCode.E)){
 			Rotate (currentDirection.GetNextClockwise());
+		}
+
+		if(currentCell == keyCell)
+		{
+			hasKey = true;
 		}
 	}
 }

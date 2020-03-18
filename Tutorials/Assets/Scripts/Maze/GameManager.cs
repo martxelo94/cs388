@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour {
 
 	public Maze mazePrefab;
 	private Maze mazeInstance;
+
+	public Key keyPrefab;
+	private Key keyInstance;
+
 	// Use this for initialization
 	void Start () {
 		StartCoroutine(BeginGame ());
@@ -15,6 +19,13 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if(playerInstance.hasKey)
+		{
+			keyInstance.Hide();
+		}
+
+
 		if(Input.GetKeyDown(KeyCode.Space)){
 			RestartGame();
 		}
@@ -27,6 +38,12 @@ public class GameManager : MonoBehaviour {
 		yield return StartCoroutine(mazeInstance.Generate ());
 		playerInstance = Instantiate (playerPrefab) as Player;
 		playerInstance.SetLocation (mazeInstance.GetCell (mazeInstance.RandomCoordinates));
+
+		keyInstance = Instantiate(keyPrefab) as Key;
+		keyInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+
+		playerInstance.Set_Key_Cell_Location(keyInstance.currentCell);
+
 		Camera.main.clearFlags = CameraClearFlags.Depth;
 		Camera.main.rect = new Rect (0f, 0f, 0.5f, 0.5f);
 	}
@@ -37,6 +54,12 @@ public class GameManager : MonoBehaviour {
 		if(playerInstance != null){
 			Destroy (playerInstance.gameObject);
 		}
+
+		if (keyInstance != null)
+		{
+			Destroy(keyInstance.gameObject);
+		}
+
 		StartCoroutine(BeginGame ());
 	}
 }
