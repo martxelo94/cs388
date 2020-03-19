@@ -3,8 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	public Player playerPrefab;
-	private Player playerInstance;
+	public Player playerInstance;
 
 	public Maze mazePrefab;
 	private Maze mazeInstance;
@@ -14,6 +13,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        playerInstance.controlled = false;
 		StartCoroutine(BeginGame ());
 	}
 	
@@ -32,20 +32,19 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private IEnumerator BeginGame(){
-		Camera.main.clearFlags = CameraClearFlags.Skybox;
-		Camera.main.rect = new Rect (0f, 0f, 1f, 1f);
+		//Camera.main.clearFlags = CameraClearFlags.Skybox;
+		//Camera.main.rect = new Rect (0f, 0f, 1f, 1f);
 		mazeInstance = Instantiate (mazePrefab) as Maze;
 		yield return StartCoroutine(mazeInstance.Generate ());
-		playerInstance = Instantiate (playerPrefab) as Player;
 		playerInstance.SetLocation (mazeInstance.GetCell (mazeInstance.RandomCoordinates));
 
 		keyInstance = Instantiate(keyPrefab) as Key;
 		keyInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
 
 		playerInstance.Set_Key_Cell_Location(keyInstance.currentCell);
-
-		Camera.main.clearFlags = CameraClearFlags.Depth;
-		Camera.main.rect = new Rect (0f, 0f, 0.5f, 0.5f);
+        playerInstance.controlled = true;
+		//Camera.main.clearFlags = CameraClearFlags.Depth;
+		//Camera.main.rect = new Rect (0f, 0f, 0.5f, 0.5f);
 	}
 
 	private void RestartGame(){

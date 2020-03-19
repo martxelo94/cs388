@@ -24,6 +24,7 @@ public class GyroscopeControl : MonoBehaviour
 		}
 		protected void LateUpdate ()
 		{
+        Debug.Log("Gyroscope Updating");
 				if (gyroEnabled) {
 						transformObject.localRotation = Quaternion.Slerp (transformObject.localRotation, cameraBase * (ConvertRotation (referanceRotation * Input.gyro.attitude) * GetRotFix ()), lowPassFilterFactor);
 				}
