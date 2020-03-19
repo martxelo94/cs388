@@ -3,8 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	public Player playerPrefab;
-	private Player playerInstance;
+	public Player playerInstance;
 
 	public Maze mazePrefab;
 	private Maze mazeInstance;
@@ -15,16 +14,16 @@ public class GameManager : MonoBehaviour {
 	public Exit_Door ExitPrefab;
 	private Exit_Door ExitInstance;
 
-	private bool playerInitialize = false;
+		private bool playerInitialize = false;
 
 	// Use this for initialization
 	void Start () {
+        playerInstance.controlled = false;
 		StartCoroutine(BeginGame ());
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
 
 		if (playerInitialize == true)
 		{
@@ -46,19 +45,15 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private IEnumerator BeginGame(){
-		Camera.main.clearFlags = CameraClearFlags.Skybox;
-		Camera.main.rect = new Rect (0f, 0f, 1f, 1f);
+		//Camera.main.clearFlags = CameraClearFlags.Skybox;
+		//Camera.main.rect = new Rect (0f, 0f, 1f, 1f);
 		mazeInstance = Instantiate (mazePrefab) as Maze;
 		yield return StartCoroutine(mazeInstance.Generate ());
-		playerInstance = Instantiate (playerPrefab) as Player;
 		playerInstance.SetLocation (mazeInstance.GetCell (mazeInstance.RandomCoordinates));
+
 
 		keyInstance = Instantiate(keyPrefab) as Key;
 		keyInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
-
-		//MazeCell inv_cells = keyInstance.currentCell;
-		//inv_cells.coordinates.x = -inv_cells.coordinates.x;
-		//inv_cells.coordinates.z = -inv_cells.coordinates.z;
 
 		ExitInstance = Instantiate(ExitPrefab) as Exit_Door;
 		ExitInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
@@ -67,9 +62,8 @@ public class GameManager : MonoBehaviour {
 		playerInstance.Set_Exit_Door_Cell_Location(ExitInstance.currentCell);
 
 		playerInitialize = true;
-
-		Camera.main.clearFlags = CameraClearFlags.Depth;
-		Camera.main.rect = new Rect (0f, 0f, 0.5f, 0.5f);
+		//Camera.main.clearFlags = CameraClearFlags.Depth;
+		//Camera.main.rect = new Rect (0f, 0f, 0.5f, 0.5f);
 	}
 
 	private void RestartGame(){

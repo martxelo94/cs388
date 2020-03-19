@@ -7,6 +7,8 @@ public class Player : MonoBehaviour {
 
 	private MazeCell keyCell;
 	public bool hasKey = false;
+    public bool controlled = false;
+    public float height = 1;
 
 	private MazeCell Exit_Door_Cell;
 	public bool maze_finish = false;
@@ -21,7 +23,7 @@ public class Player : MonoBehaviour {
 			currentCell.OnPlayerExited();
 		}
 		currentCell = cell;
-		transform.localPosition = cell.transform.localPosition;
+		transform.localPosition = cell.transform.localPosition + new Vector3(0, height, 0);
 		currentCell.OnPlayerEntered ();
 	}
 
@@ -44,6 +46,9 @@ public class Player : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        if (!controlled)
+            return;
+
 		if (Input.GetKeyDown(KeyCode.W)) {
 			Move(currentDirection);
 		}

@@ -18,6 +18,7 @@ public class CamController : MonoBehaviour {
 
 	// Fills temprotation with a value depending on mouse movement from the last frame
 	void UpdateMouse(){
+        Debug.Log("CamController update");
 		// Security check for the first input (otherwise wrong init)
 		if(oldMousePos.x < 0f )
 		{
