@@ -6,11 +6,14 @@ public class Player : MonoBehaviour {
 	private MazeDirection currentDirection;
 
 	private MazeCell keyCell;
+    [HideInInspector]
     public Maze maze;
     public bool hasKey = false;
     public bool controlled = false;
     public float height = 1;
+    public float width = 1.5f;
     public float speed = 1;
+    public GameObject dropedObjectPrefab;
 
 	private void Rotate(MazeDirection direction){
 		transform.localRotation = direction.ToRotation ();
@@ -47,27 +50,34 @@ public class Player : MonoBehaviour {
 
         Vector3 movement = new Vector3(transform.forward.x, 0, transform.forward.z) * speed * Time.deltaTime;
         Vector3 newPos = transform.position + movement;
-        Vector3 localPos = newPos - currentCell.transform.position;
+        Vector3 volumePos = newPos + new Vector3(transform.forward.x, 0, transform.forward.z) * width;
+        Vector3 localPos = volumePos - currentCell.transform.position;
         float cellHalfSize = 0.5f;
         // get direction
         MazeDirection direction = MazeDirection.None;
         if (localPos.z > cellHalfSize)
             direction = MazeDirection.North;
-        else if (localPos.z < cellHalfSize)
+        else if (localPos.z < -cellHalfSize)
             direction = MazeDirection.South;
         else if (localPos.x > cellHalfSize)
             direction = MazeDirection.East;
-        else if (localPos.x < cellHalfSize)
+        else if (localPos.x < -cellHalfSize)
             direction = MazeDirection.West;
 
         // move towards that direction
         if (direction != MazeDirection.None)
         {
             if (Move(direction))
+            {
+                //Instantiate(dropedObjectPrefab, transform.position, new Quaternion());
                 transform.position = newPos;
+                Debug.Log("Moving to another cell");
+            }
         }
-        else
+        else {
             transform.position = newPos;
+            Debug.Log("Moving on the same cell");
+        }
 
         
 		if (Input.GetKeyDown(KeyCode.W)) {
