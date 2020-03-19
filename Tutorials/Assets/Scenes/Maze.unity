@@ -331,6 +331,8 @@ MonoBehaviour:
   mazePrefab: {fileID: 11412360, guid: bd29a4b5265057f45aadbdab7164d604, type: 3}
   keyPrefab: {fileID: -512240199151228770, guid: cc5de5e674870ca479a40105f80555ad,
     type: 3}
+  ExitPrefab: {fileID: 8978577039691438881, guid: 41d1cac196452694fb10f2476db79e6e,
+    type: 3}
 --- !u!4 &1946447193
 Transform:
   m_ObjectHideFlags: 0

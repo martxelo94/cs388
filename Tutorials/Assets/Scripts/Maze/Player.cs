@@ -8,6 +8,9 @@ public class Player : MonoBehaviour {
 	private MazeCell keyCell;
 	public bool hasKey = false;
 
+	private MazeCell Exit_Door_Cell;
+	public bool maze_finish = false;
+
 	private void Rotate(MazeDirection direction){
 		transform.localRotation = direction.ToRotation ();
 		currentDirection = direction;
@@ -25,6 +28,11 @@ public class Player : MonoBehaviour {
 	public void Set_Key_Cell_Location(MazeCell cell)
 	{
 		keyCell = cell;
+	}
+
+	public void Set_Exit_Door_Cell_Location(MazeCell cell)
+	{
+		Exit_Door_Cell = cell;
 	}
 
 	private void Move(MazeDirection direction){
@@ -58,6 +66,12 @@ public class Player : MonoBehaviour {
 		if(currentCell == keyCell)
 		{
 			hasKey = true;
+		}
+
+		if((hasKey == true) && (currentCell == Exit_Door_Cell))
+		{
+			// finish game
+			maze_finish = true;
 		}
 	}
 }

@@ -12,6 +12,11 @@ public class GameManager : MonoBehaviour {
 	public Key keyPrefab;
 	private Key keyInstance;
 
+	public Exit_Door ExitPrefab;
+	private Exit_Door ExitInstance;
+
+	private bool playerInitialize = false;
+
 	// Use this for initialization
 	void Start () {
 		StartCoroutine(BeginGame ());
@@ -20,11 +25,20 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if(playerInstance.hasKey)
-		{
-			keyInstance.Hide();
-		}
 
+		if (playerInitialize == true)
+		{
+			if (playerInstance.hasKey == true)
+			{
+				keyInstance.Hide();
+			}
+
+			if (playerInstance.maze_finish == true)
+			{
+				//FINISHHH -> GO TO START MENU
+				RestartGame();
+			}
+		}
 
 		if(Input.GetKeyDown(KeyCode.Space)){
 			RestartGame();
@@ -42,7 +56,17 @@ public class GameManager : MonoBehaviour {
 		keyInstance = Instantiate(keyPrefab) as Key;
 		keyInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
 
+		//MazeCell inv_cells = keyInstance.currentCell;
+		//inv_cells.coordinates.x = -inv_cells.coordinates.x;
+		//inv_cells.coordinates.z = -inv_cells.coordinates.z;
+
+		ExitInstance = Instantiate(ExitPrefab) as Exit_Door;
+		ExitInstance.SetLocation(mazeInstance.GetCell(mazeInstance.RandomCoordinates));
+
 		playerInstance.Set_Key_Cell_Location(keyInstance.currentCell);
+		playerInstance.Set_Exit_Door_Cell_Location(ExitInstance.currentCell);
+
+		playerInitialize = true;
 
 		Camera.main.clearFlags = CameraClearFlags.Depth;
 		Camera.main.rect = new Rect (0f, 0f, 0.5f, 0.5f);
@@ -58,6 +82,11 @@ public class GameManager : MonoBehaviour {
 		if (keyInstance != null)
 		{
 			Destroy(keyInstance.gameObject);
+		}
+
+		if (ExitInstance != null)
+		{
+			Destroy(ExitInstance.gameObject);
 		}
 
 		StartCoroutine(BeginGame ());
