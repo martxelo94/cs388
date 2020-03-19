@@ -6,9 +6,11 @@ public class Player : MonoBehaviour {
 	private MazeDirection currentDirection;
 
 	private MazeCell keyCell;
-	public bool hasKey = false;
+    public Maze maze;
+    public bool hasKey = false;
     public bool controlled = false;
     public float height = 1;
+    public float speed = 1;
 
 	private void Rotate(MazeDirection direction){
 		transform.localRotation = direction.ToRotation ();
@@ -29,11 +31,13 @@ public class Player : MonoBehaviour {
 		keyCell = cell;
 	}
 
-	private void Move(MazeDirection direction){
+	private bool Move(MazeDirection direction){
 		MazeCellEdge edge = currentCell.GetEdge (direction);
 		if(edge is MazePassage){
 			SetLocation(edge.otherCell);
+            return true;
 		}
+        return false;
 	}
 
 	// Update is called once per frame
@@ -41,6 +45,31 @@ public class Player : MonoBehaviour {
         if (!controlled)
             return;
 
+        Vector3 movement = new Vector3(transform.forward.x, 0, transform.forward.z) * speed * Time.deltaTime;
+        Vector3 newPos = transform.position + movement;
+        Vector3 localPos = newPos - currentCell.transform.position;
+        float cellHalfSize = 0.5f;
+        // get direction
+        MazeDirection direction = MazeDirection.None;
+        if (localPos.z > cellHalfSize)
+            direction = MazeDirection.North;
+        else if (localPos.z < cellHalfSize)
+            direction = MazeDirection.South;
+        else if (localPos.x > cellHalfSize)
+            direction = MazeDirection.East;
+        else if (localPos.x < cellHalfSize)
+            direction = MazeDirection.West;
+
+        // move towards that direction
+        if (direction != MazeDirection.None)
+        {
+            if (Move(direction))
+                transform.position = newPos;
+        }
+        else
+            transform.position = newPos;
+
+        
 		if (Input.GetKeyDown(KeyCode.W)) {
 			Move(currentDirection);
 		}
