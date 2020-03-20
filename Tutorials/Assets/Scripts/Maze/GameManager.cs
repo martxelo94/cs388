@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour {
 		//Camera.main.clearFlags = CameraClearFlags.Skybox;
 		//Camera.main.rect = new Rect (0f, 0f, 1f, 1f);
 		mazeInstance = Instantiate (mazePrefab) as Maze;
+        // set maze to player
+        playerInstance.maze = mazeInstance;
 		yield return StartCoroutine(mazeInstance.Generate ());
 		playerInstance.SetLocation (mazeInstance.GetCell (mazeInstance.RandomCoordinates));
 
@@ -62,8 +64,7 @@ public class GameManager : MonoBehaviour {
 		playerInstance.Set_Exit_Door_Cell_Location(ExitInstance.currentCell);
 
 		playerInitialize = true;
-		//Camera.main.clearFlags = CameraClearFlags.Depth;
-		//Camera.main.rect = new Rect (0f, 0f, 0.5f, 0.5f);
+        playerInstance.controlled = true;
 	}
 
 	private void RestartGame(){

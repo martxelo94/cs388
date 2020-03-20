@@ -18,6 +18,10 @@ public class Maze : MonoBehaviour {
 	[Range(0f, 1f)]
 	public float doorProbability;
 
+    public MazeCell GetCell(Vector3 worldPos) {
+        return cells[(int)(worldPos.x + size.x / 2), (int)(worldPos.z + size.z / 2)];
+    }
+
 	public MazeCell GetCell(IntVector2 coordinates){
 		return cells [coordinates.x, coordinates.z];
 	}
@@ -141,4 +145,9 @@ public class Maze : MonoBehaviour {
 	public bool ContainsCoordinates (IntVector2 coordinate){
 		return coordinate.x >= 0 && coordinate.x < size.x && coordinate.z >= 0 && coordinate.z < size.z;
 	}
+    public bool ContainsCoordinates(Vector3 worldPos)
+    {
+        Vector2 hSize = new Vector2(size.x, size.z) / 2;
+        return worldPos.x >= -hSize.x && worldPos.x < hSize.x && worldPos.z >= -hSize.y && worldPos.z < hSize.y;
+    }
 }

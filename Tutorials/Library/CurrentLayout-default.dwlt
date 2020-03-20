@@ -21,7 +21,11 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 7}
+<<<<<<< HEAD
   m_MinSize: {x: 875, y: 542}
+=======
+  m_MinSize: {x: 875, y: 613}
+>>>>>>> Martxelo
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -33,6 +37,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: GameView
   m_EditorClassIdentifier: 
@@ -59,23 +64,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
+=======
+>>>>>>> Martxelo
   m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Children:
+<<<<<<< HEAD
   - {fileID: 10}
   - {fileID: 4}
+=======
+  - {fileID: 3}
+>>>>>>> Martxelo
   m_Position:
     serializedVersion: 2
     x: 0
     y: 30
     width: 1280
     height: 891
+<<<<<<< HEAD
   m_MinSize: {x: 877, y: 492}
   m_MaxSize: {x: 16002, y: 14042}
   vertical: 0
   controlID: 145
 --- !u!114 &4
+=======
+  m_MinSize: {x: 679, y: 342}
+  m_MaxSize: {x: 12004, y: 8042}
+  vertical: 1
+  controlID: 63
+--- !u!114 &3
+>>>>>>> Martxelo
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,12 +103,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 1
-  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Children: []
+  m_Children:
+  - {fileID: 10}
+  - {fileID: 4}
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1004
     y: 0
     width: 276
@@ -102,6 +124,17 @@ MonoBehaviour:
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &5
+=======
+    x: 0
+    y: 0
+    width: 1280
+    height: 891
+  m_MinSize: {x: 679, y: 342}
+  m_MaxSize: {x: 12004, y: 8042}
+  vertical: 0
+  controlID: 64
+--- !u!114 &4
+>>>>>>> Martxelo
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,13 +149,21 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 0
+    x: 912
     y: 0
+<<<<<<< HEAD
     width: 298
     height: 511
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
+=======
+    width: 368
+    height: 891
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 15}
+>>>>>>> Martxelo
   m_Panes:
   - {fileID: 16}
   m_Selected: 0
@@ -137,12 +178,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: 
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 511
     width: 1004
     height: 380
@@ -154,6 +196,46 @@ MonoBehaviour:
   - {fileID: 19}
   m_Selected: 0
   m_LastSelected: 1
+--- !u!114 &7
+=======
+    y: 0
+    width: 271
+    height: 511
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 16}
+  m_Panes:
+  - {fileID: 16}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &6
+>>>>>>> Martxelo
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 1
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: ConsoleWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 511
+    width: 912
+    height: 380
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 19}
+  m_Panes:
+  - {fileID: 14}
+  - {fileID: 19}
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -168,7 +250,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Children:
   - {fileID: 8}
+<<<<<<< HEAD
   - {fileID: 3}
+=======
+  - {fileID: 2}
+>>>>>>> Martxelo
   - {fileID: 9}
   m_Position:
     serializedVersion: 2
@@ -240,12 +326,21 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1004
     height: 891
   m_MinSize: {x: 602, y: 492}
   m_MaxSize: {x: 12002, y: 14042}
   vertical: 1
   controlID: 82
+=======
+    width: 912
+    height: 891
+  m_MinSize: {x: 403, y: 342}
+  m_MaxSize: {x: 8003, y: 8042}
+  vertical: 1
+  controlID: 65
+>>>>>>> Martxelo
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -261,17 +356,29 @@ MonoBehaviour:
   m_Children:
   - {fileID: 5}
   - {fileID: 12}
+<<<<<<< HEAD
   - {fileID: 2}
+=======
+>>>>>>> Martxelo
   m_Position:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 1004
     height: 511
   m_MinSize: {x: 602, y: 221}
   m_MaxSize: {x: 12002, y: 4021}
   vertical: 0
   controlID: 83
+=======
+    width: 912
+    height: 511
+  m_MinSize: {x: 403, y: 221}
+  m_MaxSize: {x: 8003, y: 4021}
+  vertical: 0
+  controlID: 66
+>>>>>>> Martxelo
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -287,18 +394,32 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 298
     y: 0
     width: 253
+=======
+    x: 271
+    y: 0
+    width: 641
+>>>>>>> Martxelo
     height: 511
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
+<<<<<<< HEAD
   - {fileID: 17}
   - {fileID: 13}
   m_Selected: 0
   m_LastSelected: 0
+=======
+  - {fileID: 13}
+  - {fileID: 18}
+  - {fileID: 17}
+  m_Selected: 2
+  m_LastSelected: 1
+>>>>>>> Martxelo
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -348,7 +469,11 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 584
+<<<<<<< HEAD
     width: 1003
+=======
+    width: 911
+>>>>>>> Martxelo
     height: 359
   m_ViewDataDictionary: {fileID: 0}
   m_SearchFilter:
@@ -364,20 +489,35 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
   - Assets
+=======
+    - Assets/Prefabs/Maze
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Prefabs/Maze
+>>>>>>> Martxelo
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Proyectos\cs388\Tutorials
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 98370000
     m_LastClickedID: 14232
     m_ExpandedIDs: 0000000038280000ee28000070370000983700009a3700009c3700009e370000a0370000a837000000ca9a3b
+=======
+    scrollPos: {x: 0, y: 1}
+    m_SelectedIDs: 3e350000
+    m_LastClickedID: 13630
+    m_ExpandedIDs: 0000000038280000ee280000043500002c3500002e3500003035000032350000343500003635000038350000
+>>>>>>> Martxelo
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -405,7 +545,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 0000000038280000ee28000070370000983700009a3700009c3700009e370000a0370000
+=======
+    m_ExpandedIDs: 0000000038280000ee280000043500002c3500002e3500003035000032350000343500003635000038350000
+>>>>>>> Martxelo
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -430,8 +574,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: e2330000
+    m_LastClickedInstanceID: 13282
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000000000000
     m_RenameOverlay:
@@ -482,9 +626,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 1004
     y: 73
     width: 275
+=======
+    x: 912
+    y: 73
+    width: 367
+>>>>>>> Martxelo
     height: 870
   m_ViewDataDictionary: {fileID: 0}
   m_OpenAddComponentMenu: 0
@@ -522,15 +672,25 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 73
+<<<<<<< HEAD
     width: 297
+=======
+    width: 270
+>>>>>>> Martxelo
     height: 490
   m_ViewDataDictionary: {fileID: 0}
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 9c370000
       m_LastClickedID: 0
       m_ExpandedIDs: 4cf4ffff5cf4ffff5ef4ffff
+=======
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 18f8ffff32f8ffff3cf8ffff48f8ffff26f9ffff40f9fffffef9ffff0afaffff70fbffff
+>>>>>>> Martxelo
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -575,9 +735,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 298
     y: 73
     width: 251
+=======
+    x: 271
+    y: 73
+    width: 639
+>>>>>>> Martxelo
     height: 490
   m_ViewDataDictionary: {fileID: 0}
   m_ShowContextualTools: 0
@@ -590,9 +756,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 2.7806225, y: 1.9699184, z: -4.117183}
     speed: 2
     m_Value: {x: 2.7806225, y: 1.9699184, z: -4.117183}
+=======
+    m_Target: {x: 1.4769764, y: 11.631101, z: -12.30962}
+    speed: 2
+    m_Value: {x: 1.4769764, y: 11.631101, z: -12.30962}
+>>>>>>> Martxelo
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -638,9 +810,15 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
+<<<<<<< HEAD
     m_Target: {x: 0.22895724, y: 0.55270654, z: -0.16121183, w: 0.7849429}
     speed: 2
     m_Value: {x: 0.22895375, y: 0.55269814, z: -0.16120937, w: 0.78493094}
+=======
+    m_Target: {x: 0.17929813, y: -0.5450042, z: 0.120622866, w: 0.810138}
+    speed: 2
+    m_Value: {x: 0.18032616, y: -0.54602295, z: 0.121707834, w: 0.8090294}
+>>>>>>> Martxelo
   m_Size:
     m_Target: 22
     speed: 2
@@ -690,9 +868,15 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
+<<<<<<< HEAD
     x: 551
     y: 73
     width: 451
+=======
+    x: 271
+    y: 73
+    width: 639
+>>>>>>> Martxelo
     height: 490
   m_ViewDataDictionary: {fileID: 0}
   m_SerializedViewsNames: []
@@ -701,7 +885,11 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
+<<<<<<< HEAD
   m_TargetSize: {x: 451, y: 254}
+=======
+  m_TargetSize: {x: 639, y: 359}
+>>>>>>> Martxelo
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -715,10 +903,17 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
+<<<<<<< HEAD
     m_HBaseRangeMin: -225.5
     m_HBaseRangeMax: 225.5
     m_VBaseRangeMin: -127
     m_VBaseRangeMax: 127
+=======
+    m_HBaseRangeMin: -319.5
+    m_HBaseRangeMax: 319.5
+    m_VBaseRangeMin: -179.5
+    m_VBaseRangeMax: 179.5
+>>>>>>> Martxelo
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -727,7 +922,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -735,17 +930,26 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
+<<<<<<< HEAD
       y: 21
       width: 451
       height: 469
     m_Scale: {x: 1, y: 1}
     m_Translation: {x: 225.5, y: 234.5}
+=======
+      y: 0
+      width: 639
+      height: 490
+    m_Scale: {x: 1, y: 1}
+    m_Translation: {x: 319.5, y: 245}
+>>>>>>> Martxelo
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
+<<<<<<< HEAD
       x: -225.5
       y: -234.5
       width: 451
@@ -753,6 +957,15 @@ MonoBehaviour:
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 451, y: 490}
+=======
+      x: -319.5
+      y: -245
+      width: 639
+      height: 490
+    m_MinimalGUI: 1
+  m_defaultScale: 1
+  m_LastWindowPixelSize: {x: 639, y: 490}
+>>>>>>> Martxelo
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000001000000000000
@@ -781,6 +994,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 584
+<<<<<<< HEAD
     width: 1003
+=======
+    width: 911
+>>>>>>> Martxelo
     height: 359
   m_ViewDataDictionary: {fileID: 0}
