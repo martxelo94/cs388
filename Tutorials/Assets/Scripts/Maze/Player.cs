@@ -18,6 +18,11 @@ public class Player : MonoBehaviour {
 	private MazeCell Exit_Door_Cell;
 	public bool maze_finish = false;
 
+    public float time_to_confirm = 5.0f;
+    private float confirmation_time = 0;
+    public GameObject exitButton;
+    private GameObject currentObjectLooking;
+
 
     private void Rotate(MazeDirection direction){
 		transform.localRotation = direction.ToRotation ();
@@ -63,6 +68,38 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
+        if (exitButton != null)
+        {
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+            {
+                currentObjectLooking = hit.collider.gameObject;
+            }
+            if (currentObjectLooking == exitButton)
+            {
+                //exitButton.GetComponent<MeshRenderer>().sharedMaterial.SetColor("Albedo", new Color(1, 1, 0, 1));
+                //exitButton.transform.Rotate(exitButton.transform.up, 5);
+                exitButton.transform.RotateAroundLocal(Vector3.up, Time.deltaTime * 10);
+                if (confirmation_time < time_to_confirm)
+                {
+                    confirmation_time += Time.deltaTime;
+                }
+                else
+                {
+                    confirmation_time = 0;
+                    // change to menu
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                }
+            }
+            else
+            {
+                confirmation_time = 0;
+            }
+
+        }
+
         if (!controlled)
             return;
 

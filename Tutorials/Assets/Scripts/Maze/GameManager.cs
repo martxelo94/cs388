@@ -20,10 +20,16 @@ public class GameManager : MonoBehaviour {
 
 		private bool playerInitialize = false;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+
+    public void StartGame() {
         playerInstance.controlled = false;
-		StartCoroutine(BeginGame ());
+
+        StartCoroutine(BeginGame());
+    }
+
+	void Start () {
+        StartGame();
 	}
 	
 	// Update is called once per frame
@@ -42,6 +48,7 @@ public class GameManager : MonoBehaviour {
 				RestartGame();
 			}
 		}
+
 
 		if(Input.GetKeyDown(KeyCode.Space)){
 			RestartGame();

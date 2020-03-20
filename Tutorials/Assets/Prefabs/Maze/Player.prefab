@@ -28,9 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.35, z: 0}
   m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
-  m_Children:
-  - {fileID: 2217863602738972171}
-  - {fileID: 2217863602662240003}
+  m_Children: []
   m_Father: {fileID: 431794}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -111,9 +109,11 @@ Transform:
   m_GameObject: {fileID: 183464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.5, y: 1, z: 0.5}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 450746}
+  - {fileID: 2217863602738972171}
+  - {fileID: 2217863602662240003}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183464}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae2f55a71cbf2dd4fb648778cb3dd892, type: 3}
   m_Name: 
@@ -221,11 +221,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2217863602662240002}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0.08571428, z: -0.5}
-  m_LocalScale: {x: 2.8571427, y: 2.8571427, z: 2.8571427}
+  m_LocalPosition: {x: 0.087500095, y: 0.3800001, z: -0.17500001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 450746}
-  m_RootOrder: 1
+  m_Father: {fileID: 431794}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2217863602662240006
 Camera:
@@ -333,11 +333,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2217863602738972183}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0.08571428, z: -0.5}
-  m_LocalScale: {x: 2.8571427, y: 2.8571427, z: 2.8571427}
+  m_LocalPosition: {x: -0.087500095, y: 0.3800001, z: -0.17500001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 450746}
-  m_RootOrder: 0
+  m_Father: {fileID: 431794}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &2217863602738972170
 Camera:
