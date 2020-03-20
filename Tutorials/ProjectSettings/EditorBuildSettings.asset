@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/VRdebugScene.unity
+    guid: 969adb3aaf9f5564185f4e26065c8063
+  - enabled: 1
     path: Assets/Scenes/Maze.unity
     guid: a9448e717f7eae8459b0d682f34b02f9
   m_configObjects: {}
