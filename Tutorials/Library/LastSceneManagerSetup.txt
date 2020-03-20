@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/LoadingScreen.unity
-=======
-- path: Assets/Scenes/VRdebugScene.unity
->>>>>>> Martxelo
+- path: Assets/Scenes/Maze.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

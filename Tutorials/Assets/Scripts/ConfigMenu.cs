@@ -13,7 +13,7 @@ public class ConfigMenu : MonoBehaviour {
 	public void LoadNextScene(){
 		this.enabled = false; //Security check to avoid multiple instances
 		//Load next scene (hardcoded)
-		UnityEngine.SceneManagement.SceneManager.LoadScene (1);
+		UnityEngine.SceneManagement.SceneManager.LoadScene (2);
 	}
 	//Deactivates non vr camera, and activates vr
 	public void StartTest(){

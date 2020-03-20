@@ -90,7 +90,7 @@ public class Player : MonoBehaviour {
                 {
                     confirmation_time = 0;
                     // change to menu
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(1);
                 }
             }
             else
