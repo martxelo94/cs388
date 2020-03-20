@@ -346,10 +346,39 @@ PrefabInstance:
       propertyPath: exitButton
       value: 
       objectReference: {fileID: 2035588717}
+    - target: {fileID: 11421800, guid: b32f1b0adafae9f4eb35b3dd7b2872ff, type: 3}
+      propertyPath: height
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217863602662240003, guid: b32f1b0adafae9f4eb35b3dd7b2872ff,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217863602662240006, guid: b32f1b0adafae9f4eb35b3dd7b2872ff,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217863602738972170, guid: b32f1b0adafae9f4eb35b3dd7b2872ff,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217863602738972171, guid: b32f1b0adafae9f4eb35b3dd7b2872ff,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 4033162353992092043, guid: b32f1b0adafae9f4eb35b3dd7b2872ff,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4348408867149620118, guid: b32f1b0adafae9f4eb35b3dd7b2872ff,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b32f1b0adafae9f4eb35b3dd7b2872ff, type: 3}

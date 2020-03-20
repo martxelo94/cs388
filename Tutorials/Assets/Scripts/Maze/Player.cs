@@ -105,8 +105,7 @@ public class Player : MonoBehaviour {
 
         Vector3 movement = new Vector3(transform.forward.x, 0, transform.forward.z) * speed * Time.deltaTime;
         Vector3 newPos = transform.position + movement;
-        Vector3 volumePos = newPos + new Vector3(transform.forward.x, 0, transform.forward.z) * width;
-        Vector3 localPos = volumePos - currentCell.transform.position;
+        Vector3 localPos = newPos - currentCell.transform.position;
         float cellHalfSize = 0.5f;
         // get direction
         MazeDirection direction = MazeDirection.None;
