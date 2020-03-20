@@ -6,6 +6,8 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
 	public Player playerInstance;
+    public Camera mapCameraLeft;
+    public Camera mapCameraRight;
 
 	public Maze mazePrefab;
 	private Maze mazeInstance;
@@ -47,9 +49,13 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private IEnumerator BeginGame(){
-		//Camera.main.clearFlags = CameraClearFlags.Skybox;
-		//Camera.main.rect = new Rect (0f, 0f, 1f, 1f);
-		mazeInstance = Instantiate (mazePrefab) as Maze;
+
+        mapCameraLeft.clearFlags = CameraClearFlags.Skybox;
+        mapCameraLeft.rect = new Rect (0f, 0f, 0.5f, 1f);
+        mapCameraRight.clearFlags = CameraClearFlags.Skybox;
+        mapCameraRight.rect = new Rect(0.5f, 0f, 1f, 1f);
+
+        mazeInstance = Instantiate (mazePrefab) as Maze;
         // set maze to player
         playerInstance.maze = mazeInstance;
 		yield return StartCoroutine(mazeInstance.Generate ());
@@ -67,14 +73,20 @@ public class GameManager : MonoBehaviour {
 
 		playerInitialize = true;
         playerInstance.controlled = true;
-	}
 
-	private void RestartGame(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        /*
-         * // OJITO CON BORRAR TODO A MANO, mejor restart el Level entero!
+        mapCameraLeft.clearFlags = CameraClearFlags.Depth;
+        mapCameraLeft.rect = new Rect(0f, 0f, 0.5f, 0.5f);
+        mapCameraRight.clearFlags = CameraClearFlags.Depth;
+        mapCameraRight.rect = new Rect(0.5f, 0f, 1, 0.5f);
+
+    }
+
+    private void RestartGame(){
         StopAllCoroutines ();
 		Destroy (mazeInstance.gameObject);
+         // OJITO CON BORRAR TODO A MANO, mejor restart el Level entero!
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        /*
 		if(playerInstance != null){
             // NO!
             //Destroy (playerInstance.gameObject);

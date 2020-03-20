@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 450746}
   - component: {fileID: 3368272}
-  - component: {fileID: 13664446}
   - component: {fileID: 2376630}
   m_Layer: 0
   m_Name: Capsule
@@ -43,20 +42,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126444}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!136 &13664446
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126444}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2376630
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -149,9 +134,8 @@ MonoBehaviour:
   controlled: 1
   height: 0.5
   width: 1.5
-  speed: 5
+  speed: 10
   maxSpeed: 1
-  dropedObjectPrefab: {fileID: 0}
   maze_finish: 0
 --- !u!114 &5227965891655549970
 MonoBehaviour:
@@ -160,7 +144,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183464}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae2f55a71cbf2dd4fb648778cb3dd892, type: 3}
   m_Name: 
@@ -175,7 +159,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183464}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 75f30da6b63e38d4892a03d99ccc0d37, type: 3}
   m_Name: 
@@ -278,9 +262,9 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_TargetEye: 2
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -332,7 +316,6 @@ GameObject:
   - component: {fileID: 2217863602738972171}
   - component: {fileID: 2217863602738972170}
   - component: {fileID: 2217863602738972181}
-  - component: {fileID: 2217863602738972180}
   - component: {fileID: 2217863602738972168}
   - component: {fileID: 2217863602738972169}
   m_Layer: 0
@@ -391,9 +374,9 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_TargetEye: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -401,14 +384,6 @@ Camera:
   m_StereoSeparation: 0.022
 --- !u!124 &2217863602738972181
 Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2217863602738972183}
-  m_Enabled: 1
---- !u!81 &2217863602738972180
-AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

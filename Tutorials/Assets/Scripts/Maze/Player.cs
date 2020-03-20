@@ -14,7 +14,6 @@ public class Player : MonoBehaviour {
     public float width = 1.5f;
     public float speed = 1;
     public float maxSpeed = 5;
-    public GameObject dropedObjectPrefab;
 
 	private MazeCell Exit_Door_Cell;
 	public bool maze_finish = false;

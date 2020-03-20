@@ -4,7 +4,6 @@
 public class GyroscopeControl : MonoBehaviour
 {
 	//Objects transform to change
-	Transform transformObject;
 	#region [Private fields]
 		private bool gyroEnabled = false;
 		private const float lowPassFilterFactor = 0.2f;
@@ -18,7 +17,6 @@ public class GyroscopeControl : MonoBehaviour
 	#region [Unity events]
 		protected void Start ()
 		{
-			transformObject = gameObject.transform;
 			Input.gyro.enabled = true;
 			AttachGyro ();
 		}
@@ -26,7 +24,7 @@ public class GyroscopeControl : MonoBehaviour
 		{
         Debug.Log("Gyroscope Updating");
 				if (gyroEnabled) {
-						transformObject.localRotation = Quaternion.Slerp (transformObject.localRotation, cameraBase * (ConvertRotation (referanceRotation * Input.gyro.attitude) * GetRotFix ()), lowPassFilterFactor);
+						transform.localRotation = Quaternion.Slerp (transform.localRotation, cameraBase * (ConvertRotation (referanceRotation * Input.gyro.attitude) * GetRotFix ()), lowPassFilterFactor);
 				}
 		}
 	#endregion
@@ -62,7 +60,7 @@ public class GyroscopeControl : MonoBehaviour
 		private void UpdateCameraBaseRotation (bool onlyHorizontal)
 		{
 				if (onlyHorizontal) {
-						var fw = transformObject.forward;
+						var fw = transform.forward;
 						fw.y = 0;
 						if (fw == Vector3.zero) {
 								cameraBase = Quaternion.identity;
@@ -70,7 +68,7 @@ public class GyroscopeControl : MonoBehaviour
 								cameraBase = Quaternion.FromToRotation (Vector3.forward, fw);
 						}
 				} else {
-						cameraBase = transformObject.localRotation;
+						cameraBase = transform.localRotation;
 				}
 		}
 		private static Quaternion ConvertRotation (Quaternion q)

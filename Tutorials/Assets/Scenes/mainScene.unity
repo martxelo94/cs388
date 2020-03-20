@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465785, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -225,14 +225,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33367384}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 056a3fbf0f4efb84c84903b1d21001bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   strengthX: 0.05
   strengthY: 0.05
-  fishEyeShader: {fileID: 0}
+  fishEyeShader: {fileID: 4800000, guid: 04154cd8b3f956242ae904f6bdd7dda5, type: 3}
 --- !u!1 &210242637
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +244,6 @@ GameObject:
   - component: {fileID: 210242641}
   - component: {fileID: 210242640}
   - component: {fileID: 210242639}
-  - component: {fileID: 210242638}
   - component: {fileID: 210242642}
   - component: {fileID: 210242643}
   m_Layer: 0
@@ -254,14 +253,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &210242638
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210242637}
-  m_Enabled: 1
 --- !u!124 &210242639
 Behaviour:
   m_ObjectHideFlags: 0
@@ -346,14 +337,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210242637}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 056a3fbf0f4efb84c84903b1d21001bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   strengthX: 0.05
   strengthY: 0.05
-  fishEyeShader: {fileID: 0}
+  fishEyeShader: {fileID: 4800000, guid: 04154cd8b3f956242ae904f6bdd7dda5, type: 3}
 --- !u!1 &317145197
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,9 +446,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 623577382}
-  - component: {fileID: 623577381}
   - component: {fileID: 623577383}
-  - component: {fileID: 623577384}
+  - component: {fileID: 623577381}
   m_Layer: 0
   m_Name: CameraController
   m_TagString: Untagged
@@ -508,21 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f30da6b63e38d4892a03d99ccc0d37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &623577384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 623577380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 056a3fbf0f4efb84c84903b1d21001bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strengthX: 0.936
-  strengthY: 0.953
-  fishEyeShader: {fileID: 4800000, guid: 04154cd8b3f956242ae904f6bdd7dda5, type: 3}
 --- !u!1 &1298618973
 GameObject:
   m_ObjectHideFlags: 0
