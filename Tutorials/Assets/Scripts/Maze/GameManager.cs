@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
+
 
 public class GameManager : MonoBehaviour {
 
@@ -68,10 +70,16 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private void RestartGame(){
-		StopAllCoroutines ();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        /*
+         * // OJITO CON BORRAR TODO A MANO, mejor restart el Level entero!
+        StopAllCoroutines ();
 		Destroy (mazeInstance.gameObject);
 		if(playerInstance != null){
-			Destroy (playerInstance.gameObject);
+            // NO!
+            //Destroy (playerInstance.gameObject);
+            // Change level instead or restart full level
+            //Application.LoadLevel(Application.loadedLevel);   // DEPRECATED
 		}
 
 		if (keyInstance != null)
@@ -85,5 +93,6 @@ public class GameManager : MonoBehaviour {
 		}
 
 		StartCoroutine(BeginGame ());
+        */
 	}
 }

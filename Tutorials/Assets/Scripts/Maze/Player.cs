@@ -13,15 +13,25 @@ public class Player : MonoBehaviour {
     public float height = 1;
     public float width = 1.5f;
     public float speed = 1;
+    public float maxSpeed = 5;
     public GameObject dropedObjectPrefab;
 
 	private MazeCell Exit_Door_Cell;
 	public bool maze_finish = false;
 
-	private void Rotate(MazeDirection direction){
+
+    private void Rotate(MazeDirection direction){
 		transform.localRotation = direction.ToRotation ();
 		currentDirection = direction;
 	}
+    public void UpdateLocation(MazeCell cell) {
+        if (currentCell != null)
+        {
+            currentCell.OnPlayerExited();
+        }
+        currentCell = cell;
+        currentCell.OnPlayerEntered();
+    }
 
 	public void SetLocation(MazeCell cell){
 		if(currentCell != null){
@@ -31,8 +41,10 @@ public class Player : MonoBehaviour {
 		transform.localPosition = cell.transform.localPosition + new Vector3(0, height, 0);
 		currentCell.OnPlayerEntered ();
 	}
-
-	public void Set_Key_Cell_Location(MazeCell cell)
+    public void Set_Exit_Door_Cell_Location(MazeCell cell) {
+        Exit_Door_Cell = cell;
+    }
+    public void Set_Key_Cell_Location(MazeCell cell)
 	{
 		keyCell = cell;
 	}
@@ -40,14 +52,18 @@ public class Player : MonoBehaviour {
 	private bool Move(MazeDirection direction){
 		MazeCellEdge edge = currentCell.GetEdge (direction);
 		if(edge is MazePassage){
-			SetLocation(edge.otherCell);
+			UpdateLocation(edge.otherCell);
             return true;
 		}
         return false;
 	}
 
-	// Update is called once per frame
-	void Update () {
+    private void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (!controlled)
             return;
 
@@ -73,12 +89,26 @@ public class Player : MonoBehaviour {
             if (Move(direction))
             {
                 //Instantiate(dropedObjectPrefab, transform.position, new Quaternion());
-                transform.position = newPos;
+                // transform.position = newPos;
+                Rigidbody rigidbody = GetComponent<Rigidbody>();
+                rigidbody.velocity += movement;
+                // cap velocity
+                float len2 = rigidbody.velocity.sqrMagnitude;
+                if (len2 > maxSpeed * maxSpeed)
+                    rigidbody.velocity = rigidbody.velocity.normalized * maxSpeed;
+                
+                
                 Debug.Log("Moving to another cell");
             }
         }
         else {
-            transform.position = newPos;
+            //transform.position = newPos;
+            Rigidbody rigidbody = GetComponent<Rigidbody>();
+            rigidbody.velocity += movement;
+            // cap velocity
+            float len2 = rigidbody.velocity.sqrMagnitude;
+            if (len2 > maxSpeed * maxSpeed)
+                rigidbody.velocity = rigidbody.velocity.normalized * maxSpeed;
             Debug.Log("Moving on the same cell");
         }
 
