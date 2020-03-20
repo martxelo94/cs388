@@ -25,6 +25,15 @@ public class GameManager : MonoBehaviour {
     public void StartGame() {
         playerInstance.controlled = false;
 
+        // set stats
+        Transform cam_l = playerInstance.transform.GetChild(1);
+        Transform cam_r = playerInstance.transform.GetChild(2);
+        cam_l.localPosition = new Vector3(-Stats.eyeSeparation, cam_l.localPosition.y, cam_l.localPosition.z);
+        cam_r.localPosition = new Vector3(Stats.eyeSeparation, cam_r.localPosition.y, cam_r.localPosition.z);
+        UnityStandardAssets.ImageEffects.Fisheye fish_l = cam_l.GetComponent<UnityStandardAssets.ImageEffects.Fisheye>();
+        UnityStandardAssets.ImageEffects.Fisheye fish_r = cam_r.GetComponent<UnityStandardAssets.ImageEffects.Fisheye>();
+        fish_l.strengthX = fish_r.strengthX = Stats.eyeBarrel;
+
         StartCoroutine(BeginGame());
     }
 
