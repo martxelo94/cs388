@@ -34,11 +34,15 @@ public class VRCameraConfig : MonoBehaviour {
 		float separation = PlayerPrefs.GetFloat ("EyeSeparation") / 2f;
 		leftEye.transform.localPosition  =  new Vector3 (-separation, 0f, 0f);
 		rightEye.transform.localPosition  = new Vector3 (separation, 0f, 0f);
+
+        Stats.eyeSeparation = separation;
 	}
 	//Updates X value of barrel distorsion from playerPrefs from 0 to 1.5
 	public void UpdateBarrelDistorsion(){
 		float distorsion = 1.5f*PlayerPrefs.GetFloat ("BarrelDistorsion");
 		for (int i = 0; i < fisheyes.Length; i++)
 			fisheyes [i].strengthX = distorsion;
+
+        Stats.eyeBarrel = distorsion;
 	}
 }
