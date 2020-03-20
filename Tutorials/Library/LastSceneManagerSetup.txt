@@ -1,9 +1,5 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/Scenes/Maze.unity
-=======
 - path: Assets/Scenes/LoadingScreen.unity
->>>>>>> Pitxa
   isLoaded: 1
   isActive: 1
   isSubScene: 0

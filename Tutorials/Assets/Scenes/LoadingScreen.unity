@@ -590,7 +590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   img: {fileID: 198954846}
   fade_in: 1
-  level_name: Maze
+  level_name: VRdebugScene
 --- !u!1 &1917577527
 GameObject:
   m_ObjectHideFlags: 0
