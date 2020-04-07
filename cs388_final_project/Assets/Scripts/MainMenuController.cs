@@ -10,18 +10,18 @@ public class MainMenuController : MonoBehaviour
     public GameObject mainMenu;
     public RawImage img;
     public bool fade_in = true;
-    public string level_name = "PongGame";
+    public string level_name = "Level0";
 
     public void playGame()
     {
-        level_name = "PongGame";
+        level_name = "Level0";
         StartCoroutine(FadeImage(fade_in));
         //SceneManager.LoadScene("PongGame");
     }
 
     public void playGame2P()
     {
-        level_name = "PongGame2";
+        level_name = "Level0";
         StartCoroutine(FadeImage(fade_in));
         //SceneManager.LoadScene("PongGame2");
     }

@@ -780,7 +780,7 @@ MonoBehaviour:
   mainMenu: {fileID: 1382625800}
   img: {fileID: 1239731872}
   fade_in: 1
-  level_name: PongGame
+  level_name: Level0
 --- !u!1 &1420218003
 GameObject:
   m_ObjectHideFlags: 0
