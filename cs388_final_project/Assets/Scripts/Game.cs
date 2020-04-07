@@ -38,6 +38,8 @@ public class Game : MonoBehaviour
         foreach (Human h in humans) {
             if (h.infected) {
                 h.Recover();
+
+                //mark stats as recover, +1, decrease infected -1
             }
         }
 
