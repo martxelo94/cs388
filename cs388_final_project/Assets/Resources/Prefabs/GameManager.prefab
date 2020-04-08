@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6502682682338032462}
   - component: {fileID: 6502682682338032463}
+  - component: {fileID: 8032440589135324406}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -43,4 +44,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cc5b923f6f5bd5409da53acd12afa2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game_time: 20
+  throws: 1
   humans: []
+  patientZeroPrefab: {fileID: 0}
+  slingPrefab: {fileID: 0}
+  infected_goal: -1
+  infected_count: 0
+--- !u!114 &8032440589135324406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6502682682338032432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8b477984f406b4da2d98639dbfc390, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 10
+  speedFactor: 3
