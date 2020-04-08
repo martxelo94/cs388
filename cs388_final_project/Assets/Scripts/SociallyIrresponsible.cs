@@ -17,7 +17,7 @@ public class SociallyIrresponsible : MonoBehaviour
         // activate trigger
         foreach (Human h in game.humans) {
             h.EnableTriggerCollider(true);
-            h.repulsion *= -1;
+            game.repulsion *= -1;
         }
 
     }
@@ -36,7 +36,7 @@ public class SociallyIrresponsible : MonoBehaviour
         foreach (Human h in game.humans)
         {
             h.EnableTriggerCollider(false);
-            h.repulsion *= -1;
+            game.repulsion *= -1;
         }
     }
 }

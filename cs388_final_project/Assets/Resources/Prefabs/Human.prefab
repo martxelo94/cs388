@@ -51,12 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf621e3c7ec9124fa9c3269c61fe049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repulsion: 1
-  speed: 5
-  maxSpeed: 3
-  infectChance: 1
   infected: 0
-  recover_time: 10
   initialDirection: {x: 0, y: 0}
   rig: {fileID: 0}
 --- !u!50 &1584638919762015973

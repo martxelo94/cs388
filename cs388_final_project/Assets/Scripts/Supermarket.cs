@@ -25,7 +25,7 @@ public class Supermarket : MonoBehaviour
             // pull humans
             foreach (Human h in game.humans) {
                 Vector2 dir = transform.position - h.transform.position;
-                h.rig.velocity += dir.normalized * Time.deltaTime * h.speed;
+                h.rig.velocity += dir.normalized * Time.deltaTime * game.speed;
             }
         }
     }
@@ -37,7 +37,7 @@ public class Supermarket : MonoBehaviour
                 Human h = other.GetComponent<Human>();
                 if (h != null) {
                     Vector2 dir = other.transform.position - transform.position;
-                    h.rig.velocity += dir.normalized * Time.deltaTime * h.speed;
+                    h.rig.velocity += dir.normalized * Time.deltaTime * game.speed;
                     Debug.Log("PushHuman from Supermarket");
                 }
             }

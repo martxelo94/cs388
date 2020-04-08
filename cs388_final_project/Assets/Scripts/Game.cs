@@ -5,28 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
+    // game state
+    public int infected_goal = -1;  // -1 means all infected
     public float game_time = 20.0f;
     private float current_game_time = 0.0f;
     public int throws = 1;
     private bool is_throwing = false;
+    [HideInInspector]
+    public int infected_count = 0;
+    private bool used_ability_1 = false;
+    private bool used_ability_2 = false;
+    private bool used_ability_3 = false;
+    private bool used_ability_4 = false;
+
+    // objects
     public List<Human> humans;
     public Human patientZeroPrefab;
     private Human patientZeroInstance;
     public LineRenderer slingPrefab;
     private LineRenderer slingInstance;
 
-    public int infected_goal = -1;  // -1 means all infected
-
-    [HideInInspector]
-    public int infected_count = 0;
+    // human stats
+    public float repulsion = 100.0f;
+    public float speed = 1.0f;
+    public float maxSpeed = 3.0f;
+    public float infectChance = 0.1f;
+    public float recover_time = 5.0f;
 
     public int getInfectedCount() { return infected_count; }
     public int getHealthyCount() { return humans.Count - infected_count; }
-
-    private bool used_ability_1 = false;
-    private bool used_ability_2 = false;
-    private bool used_ability_3 = false;
-    private bool used_ability_4 = false;
 
     bool CompletedGoal() {
         if (infected_goal < 0)
