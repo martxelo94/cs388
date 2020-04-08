@@ -11,6 +11,7 @@ public class PanelOpener : MonoBehaviour
     public UnityEngine.UI.Text infected_text;
     public UnityEngine.UI.Text healthy_text;
     public UnityEngine.UI.Text time_text;
+    public UnityEngine.UI.Text throws_text;
 
     private Game game;
 
@@ -23,7 +24,9 @@ public class PanelOpener : MonoBehaviour
     {
         infected_text.text = game.getInfectedCount().ToString();
         healthy_text.text = game.getHealthyCount().ToString();
-        time_text.text = ((int)game.current_game_time).ToString() + " : " + ((int)game.game_time).ToString();
+        time_text.text = ((int)game.current_game_time).ToString() + ":" + ((int)game.game_time).ToString();
+        throws_text.text = game.throws.ToString();
+
         // check win condition
         if (game.game_ended == false) {
             if (game.CompletedGoal())
@@ -40,6 +43,10 @@ public class PanelOpener : MonoBehaviour
                 game.game_ended = true;
             }
         }
+    }
+
+    public void SwitchActive(GameObject obj) {
+        obj.SetActive(!obj.activeSelf);
     }
 
     public void Open_Stats_Panel()

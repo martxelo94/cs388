@@ -45,8 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infected_goal: -1
   game_time: 20
+  current_game_time: 0
   throws: 1
   infected_count: 0
+  game_ended: 0
   humans: []
   patientZeroPrefab: {fileID: 0}
   slingPrefab: {fileID: 0}

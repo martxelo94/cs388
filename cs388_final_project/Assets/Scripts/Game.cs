@@ -154,9 +154,6 @@ public class Game : MonoBehaviour
             // INPUT LAUNCH
             if (Input.GetMouseButtonDown(0))
             {
-
-
-
                 Time.timeScale = 0.0f;
                 // spawn patient ZERO
                 Vector2 pos2D = TouchPos();
@@ -188,20 +185,13 @@ public class Game : MonoBehaviour
             {
                 Time.timeScale = 1.0f;
                 if (is_throwing) {
-                    if (!InputCancel())
-                    {
-                        // get velocity
-                        Vector2 v = slingInstance.GetPosition(0) - slingInstance.GetPosition(1);
-                        Rigidbody2D rig = patientZeroInstance.GetComponent<Rigidbody2D>();
-                        rig.velocity = v;
+                    // get velocity
+                    Vector2 v = slingInstance.GetPosition(0) - slingInstance.GetPosition(1);
+                    Rigidbody2D rig = patientZeroInstance.GetComponent<Rigidbody2D>();
+                    rig.velocity = v;
 
-                        patientZeroInstance.Infect();
-                        humans.Add(patientZeroInstance);
-
-                    }
-                    else {
-                       Destroy(patientZeroInstance.gameObject);
-                    }
+                    patientZeroInstance.Infect();
+                    humans.Add(patientZeroInstance);
                     Destroy(slingInstance.gameObject);
 
                     // update throws
@@ -211,6 +201,11 @@ public class Game : MonoBehaviour
                 }
             }
 
+            if (InputCancel() && is_throwing) {
+                Destroy(patientZeroInstance.gameObject);
+                Destroy(slingInstance.gameObject);
+                is_throwing = false;
+            }
         }
     }
 }
