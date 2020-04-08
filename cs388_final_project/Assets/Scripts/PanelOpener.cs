@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PanelOpener : MonoBehaviour
 {
-    public GameObject panel;
+    public GameObject stats_panel;
+    public GameObject goal_panel;
     public UnityEngine.UI.Text infected_text;
     public UnityEngine.UI.Text death_text;
     public UnityEngine.UI.Text healthy_text;
@@ -22,12 +23,21 @@ public class PanelOpener : MonoBehaviour
         healthy_text.text = game.getHealthyCount().ToString();
     }
 
-    public void OpenPanel()
+    public void Open_Stats_Panel()
     {
-        if(panel != null)
+        if(stats_panel != null)
         {
-            bool isActive = panel.activeSelf;
-            panel.SetActive(!isActive);
+            bool isActive = stats_panel.activeSelf;
+            stats_panel.SetActive(!isActive);
+        }
+    }
+
+    public void Open_Goal_Panel()
+    {
+        if (goal_panel != null)
+        {
+            bool isActive = goal_panel.activeSelf;
+            goal_panel.SetActive(!isActive);
         }
     }
 }
