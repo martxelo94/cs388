@@ -17,14 +17,16 @@ public class Human : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rig;
 
+    private ParticleSystem particles;
+
     // Start is called before the first frame update
     void Start()
     {
         game = FindObjectOfType<Game>();
 
         //disable particle emmiter
-        ParticleSystem ps = GetComponent<ParticleSystem>();
-        ps.Stop();
+        particles = GetComponent<ParticleSystem>();
+        particles.Stop();
 
         if (infected)
             Infect();
@@ -50,6 +52,7 @@ public class Human : MonoBehaviour
 
     public bool Recover() {
         recover_current_time += Time.deltaTime;
+        particles.emissionRate = recover_time - recover_current_time;
         if (recover_current_time > recover_time) {
             infected = false;
             recover_current_time = 0.0f;
@@ -58,8 +61,7 @@ public class Human : MonoBehaviour
             EnableTriggerCollider(false);
 
             //disable particle emmiter
-            ParticleSystem ps = GetComponent<ParticleSystem>();
-            ps.Stop();
+            particles.Stop();
 
             //update infected count
             game.infected_count--;
@@ -77,9 +79,9 @@ public class Human : MonoBehaviour
             // activate trigger collider
             EnableTriggerCollider(true);
             //activate particle emmiter
-            ParticleSystem ps = GetComponent<ParticleSystem>();
-            ps.Play();
-
+            particles.emissionRate = recover_time;
+            particles.Play();
+            
             //update infected count
             game.infected_count++;
         }
