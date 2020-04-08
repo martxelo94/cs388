@@ -21,7 +21,12 @@ public class Human : MonoBehaviour
     void Start()
     {
         game = FindObjectOfType<Game>();
-        if(infected)
+
+        //disable particle emmiter
+        ParticleSystem ps = GetComponent<ParticleSystem>();
+        ps.Stop();
+
+        if (infected)
             Infect();
 
         // apply velocity
@@ -38,6 +43,11 @@ public class Human : MonoBehaviour
         }
     }
 
+    public void EnableTriggerCollider(bool enable) {
+        CircleCollider2D[] colliders = GetComponents<CircleCollider2D>();
+        colliders[1].enabled = false;
+    }
+
     public bool Recover() {
         recover_current_time += Time.deltaTime;
         if (recover_current_time > recover_time) {
@@ -45,8 +55,11 @@ public class Human : MonoBehaviour
             recover_current_time = 0.0f;
             // change material
             GetComponent<MeshRenderer>().material.color = Color.white;
-            CircleCollider2D[] colliders = GetComponents<CircleCollider2D>();
-            colliders[1].enabled = false;
+            EnableTriggerCollider(false);
+
+            //disable particle emmiter
+            ParticleSystem ps = GetComponent<ParticleSystem>();
+            ps.Stop();
 
             //update infected count
             game.infected_count--;
@@ -62,8 +75,10 @@ public class Human : MonoBehaviour
             // change material
             GetComponent<MeshRenderer>().material.color = Color.red;
             // activate trigger collider
-            CircleCollider2D[] colliders = GetComponents<CircleCollider2D>();
-            colliders[1].enabled = true;
+            EnableTriggerCollider(true);
+            //activate particle emmiter
+            ParticleSystem ps = GetComponent<ParticleSystem>();
+            ps.Play();
 
             //update infected count
             game.infected_count++;

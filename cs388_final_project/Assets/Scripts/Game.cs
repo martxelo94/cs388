@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class Game : MonoBehaviour
 {
+    public float game_time = 20.0f;
+    private float current_game_time = 0.0f;
     public int throws = 1;
     private bool is_throwing = false;
     public List<Human> humans;
@@ -11,21 +15,46 @@ public class Game : MonoBehaviour
     public LineRenderer slingPrefab;
     private LineRenderer slingInstance;
 
+    public int infected_goal = -1;  // -1 means all infected
+
     [HideInInspector]
     public int infected_count = 0;
 
     public int getInfectedCount() { return infected_count; }
     public int getHealthyCount() { return humans.Count - infected_count; }
 
-    Vector2 TouchPos()
-    {
-        Vector2 screen_pos = Vector2.zero;
-        if (Input.touchCount > 0) {
-            screen_pos = Input.touches[0].position;
+    private bool used_ability_1 = false;
+    private bool used_ability_2 = false;
+    private bool used_ability_3 = false;
+    private bool used_ability_4 = false;
+
+    bool CompletedGoal() {
+        if (infected_goal < 0)
+        {
+            return getHealthyCount() == 0;
         }
         else {
-            screen_pos = Input.mousePosition;
+            return infected_count == infected_goal;
         }
+    }
+
+    // screen space
+    Vector2 RawTouchPos()
+    {
+        if (Input.touchCount > 0)
+        {
+            return Input.touches[0].position;
+        }
+        else
+        {
+            return Input.mousePosition;
+        }
+    }
+
+    // world space
+    Vector2 TouchPos()
+    {
+        Vector2 screen_pos = RawTouchPos();
         Vector2 pos = Camera.main.ScreenToWorldPoint(new Vector3(screen_pos.x, screen_pos.y, -Camera.main.transform.position.z));
         //Debug.Log("Touch pos = " + pos);
         return pos;
@@ -43,6 +72,32 @@ public class Game : MonoBehaviour
 
     }
 
+    void Ability_MutantVirus() {
+        if (used_ability_1)
+            return;
+        used_ability_1 = true;
+        gameObject.AddComponent<MutantVirus>();
+    }
+    void Ability_PanicShoping() {
+        if (used_ability_2)
+            return;
+        used_ability_2 = true;
+        gameObject.AddComponent<PanicShoping>();
+    }
+    void Ability_SociallyIrresponsible() {
+        if (used_ability_3)
+            return;
+        used_ability_3 = true;
+        gameObject.AddComponent<SociallyIrresponsible>();
+    }
+    void Ability_SaveTheEconomy() {
+        if (used_ability_4)
+            return;
+        used_ability_4 = true;
+        gameObject.AddComponent<SaveTheEconomy>();
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,33 +108,46 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // update game time
+        current_game_time += Time.deltaTime;
+        if (CompletedGoal()) {
+            // WIN
+            
+        }
+        if (current_game_time > game_time) {
+            // LOSE
+        }
+
         // INVOKE ABILITIES
+        if (Input.GetKeyDown(KeyCode.Alpha0)) {
+            // reset abilities
+            used_ability_1 = used_ability_2 = used_ability_3 = used_ability_4 = false;
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            gameObject.AddComponent<MutantVirus>();
+            Ability_MutantVirus();
             Debug.Log("1 MutantVirus");
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            gameObject.AddComponent<PanicShoping>();
+            Ability_PanicShoping();
             Debug.Log("2 PanicShoping");
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            gameObject.AddComponent<SociallyIrresponsible>();
+            Ability_SociallyIrresponsible();
             Debug.Log("3 SociallyIrresponsible");
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            gameObject.AddComponent<SaveTheEconomy>();
+            Ability_SaveTheEconomy();
             Debug.Log("4 SaveTheEconomy");
         }
 
         // RECOVER HUMANS
         foreach (Human h in humans) {
             if (h.infected) {
-                h.Recover();
-
                 //mark stats as recover, +1, decrease infected -1
+                h.Recover();
             }
         }
 
@@ -88,45 +156,61 @@ public class Game : MonoBehaviour
             // INPUT LAUNCH
             if (Input.GetMouseButtonDown(0))
             {
+
+
+
                 Time.timeScale = 0.0f;
                 // spawn patient ZERO
                 Vector2 pos2D = TouchPos();
                 Vector3 pos3D = new Vector3(pos2D.x, pos2D.y, -1.0f);
-                slingInstance = Instantiate<LineRenderer>(slingPrefab, Vector3.zero, new Quaternion());
-                slingInstance.SetPosition(0, pos3D);
-                patientZeroInstance = Instantiate<Human>(patientZeroPrefab, pos3D, new Quaternion());
+                // do not spawn in colliders
+                RaycastHit2D hit = Physics2D.Raycast(pos2D, Vector2.zero, Mathf.Infinity, 1 << 8);
+                if (hit.collider == null)
+                {
+                    slingInstance = Instantiate<LineRenderer>(slingPrefab, Vector3.zero, new Quaternion());
+                    slingInstance.SetPosition(0, pos3D);
+                    patientZeroInstance = Instantiate<Human>(patientZeroPrefab, pos3D, new Quaternion());
 
-                is_throwing = true;
+                    is_throwing = true;
+
+                }
+                else {
+                    Debug.Log("Hit: " + hit.collider.gameObject.name);
+                }
             }
             if (Input.GetMouseButton(0))
             {
-                Vector2 pos2D = TouchPos();
-                Vector3 pos3D = new Vector3(pos2D.x, pos2D.y, -1.0f);
-                slingInstance.SetPosition(1, pos3D);
+                if (is_throwing) {
+                    Vector2 pos2D = TouchPos();
+                    Vector3 pos3D = new Vector3(pos2D.x, pos2D.y, -1.0f);
+                    slingInstance.SetPosition(1, pos3D);
+                }
             }
             if (Input.GetMouseButtonUp(0))
             {
                 Time.timeScale = 1.0f;
-                if (!InputCancel())
-                {
-                    // get velocity
-                    Vector2 v = slingInstance.GetPosition(0) - slingInstance.GetPosition(1);
-                    Rigidbody2D rig = patientZeroInstance.GetComponent<Rigidbody2D>();
-                    rig.velocity = v;
+                if (is_throwing) {
+                    if (!InputCancel())
+                    {
+                        // get velocity
+                        Vector2 v = slingInstance.GetPosition(0) - slingInstance.GetPosition(1);
+                        Rigidbody2D rig = patientZeroInstance.GetComponent<Rigidbody2D>();
+                        rig.velocity = v;
 
-                    patientZeroInstance.Infect();
-                    humans.Add(patientZeroInstance);
+                        patientZeroInstance.Infect();
+                        humans.Add(patientZeroInstance);
 
+                    }
+                    else {
+                       Destroy(patientZeroInstance.gameObject);
+                    }
+                    Destroy(slingInstance.gameObject);
+
+                    // update throws
+                    throws--;
+
+                    is_throwing = false;
                 }
-                else {
-                   Destroy(patientZeroInstance.gameObject);
-                }
-                Destroy(slingInstance.gameObject);
-
-                // update throws
-                throws--;
-
-                is_throwing = false;
             }
 
         }

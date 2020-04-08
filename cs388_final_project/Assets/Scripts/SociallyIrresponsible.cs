@@ -14,6 +14,12 @@ public class SociallyIrresponsible : MonoBehaviour
     {
         game = FindObjectOfType<Game>();
 
+        // activate trigger
+        foreach (Human h in game.humans) {
+            h.EnableTriggerCollider(true);
+            h.repulsion *= -1;
+        }
+
     }
 
     // Update is called once per frame
@@ -26,6 +32,11 @@ public class SociallyIrresponsible : MonoBehaviour
 
     private void OnDestroy()
     {
-        
+        // deactivate trigger
+        foreach (Human h in game.humans)
+        {
+            h.EnableTriggerCollider(false);
+            h.repulsion *= -1;
+        }
     }
 }
