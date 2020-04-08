@@ -4,11 +4,18 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     public int throws = 1;
+    private bool is_throwing = false;
     public List<Human> humans;
     public Human patientZeroPrefab;
     private Human patientZeroInstance;
     public LineRenderer slingPrefab;
     private LineRenderer slingInstance;
+
+    [HideInInspector]
+    public int infected_count = 0;
+
+    public int getInfectedCount() { return infected_count; }
+    public int getHealthyCount() { return humans.Count - infected_count; }
 
     Vector2 TouchPos()
     {
@@ -20,8 +27,20 @@ public class Game : MonoBehaviour
             screen_pos = Input.mousePosition;
         }
         Vector2 pos = Camera.main.ScreenToWorldPoint(new Vector3(screen_pos.x, screen_pos.y, -Camera.main.transform.position.z));
-        Debug.Log("Touch pos = " + pos);
+        //Debug.Log("Touch pos = " + pos);
         return pos;
+    }
+
+    bool InputCancel()
+    {
+        if (Input.touchCount > 0)
+        {
+            return Input.touchCount == 2;
+        }
+        else {
+            return Input.GetMouseButton(1);
+        }
+
     }
 
     // Start is called before the first frame update
@@ -34,6 +53,27 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // INVOKE ABILITIES
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            gameObject.AddComponent<MutantVirus>();
+            Debug.Log("1 MutantVirus");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            gameObject.AddComponent<PanicShoping>();
+            Debug.Log("2 PanicShoping");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            gameObject.AddComponent<SociallyIrresponsible>();
+            Debug.Log("3 SociallyIrresponsible");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            gameObject.AddComponent<SaveTheEconomy>();
+            Debug.Log("4 SaveTheEconomy");
+        }
+
         // RECOVER HUMANS
         foreach (Human h in humans) {
             if (h.infected) {
@@ -43,7 +83,7 @@ public class Game : MonoBehaviour
             }
         }
 
-        if(throws > 0)
+        if(throws > 0 || throws < 0)
         {
             // INPUT LAUNCH
             if (Input.GetMouseButtonDown(0))
@@ -55,9 +95,8 @@ public class Game : MonoBehaviour
                 slingInstance = Instantiate<LineRenderer>(slingPrefab, Vector3.zero, new Quaternion());
                 slingInstance.SetPosition(0, pos3D);
                 patientZeroInstance = Instantiate<Human>(patientZeroPrefab, pos3D, new Quaternion());
-                patientZeroInstance.Infect();
-                humans.Add(patientZeroInstance);
 
+                is_throwing = true;
             }
             if (Input.GetMouseButton(0))
             {
@@ -68,14 +107,26 @@ public class Game : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 Time.timeScale = 1.0f;
-                // get velocity
-                Vector2 v = slingInstance.GetPosition(0) - slingInstance.GetPosition(1);
-                Rigidbody2D rig = patientZeroInstance.GetComponent<Rigidbody2D>();
-                rig.velocity = v;
+                if (!InputCancel())
+                {
+                    // get velocity
+                    Vector2 v = slingInstance.GetPosition(0) - slingInstance.GetPosition(1);
+                    Rigidbody2D rig = patientZeroInstance.GetComponent<Rigidbody2D>();
+                    rig.velocity = v;
+
+                    patientZeroInstance.Infect();
+                    humans.Add(patientZeroInstance);
+
+                }
+                else {
+                   Destroy(patientZeroInstance.gameObject);
+                }
                 Destroy(slingInstance.gameObject);
 
                 // update throws
                 throws--;
+
+                is_throwing = false;
             }
 
         }

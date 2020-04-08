@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SaveTheEconomy : MonoBehaviour
+public class PanicShoping : MonoBehaviour
 {
-    private Game game;
+    Supermarket[] supers;
 
     public float duration = 10.0f;
     private float current_duration = 0.0f;
 
-    public float speedFactor = 3.0f;
-
     // Start is called before the first frame update
     void Start()
     {
-        game = FindObjectOfType<Game>();
-        foreach (Human h in game.humans) {
-            h.rig.velocity *= speedFactor;
+        supers = FindObjectsOfType<Supermarket>();
+        foreach (Supermarket s in supers) {
+            s.SetPushHumans(false);
         }
     }
 
@@ -30,10 +28,10 @@ public class SaveTheEconomy : MonoBehaviour
 
     private void OnDestroy()
     {
-        //if(game != null)
-        foreach (Human h in game.humans)
+        foreach (Supermarket s in supers)
         {
-            h.rig.velocity /= speedFactor;
+            if(s != null)
+                s.SetPushHumans(true);
         }
     }
 }

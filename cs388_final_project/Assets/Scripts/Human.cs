@@ -4,32 +4,38 @@ using UnityEngine;
 
 public class Human : MonoBehaviour
 {
-    public float attraction = 100.0f;
+    public float repulsion = 100.0f;
     public float speed = 1.0f;
+    public float maxSpeed = 3.0f;
+    public float infectChance = 0.1f;
     public bool infected = false;
     public float recover_time = 5.0f;
     private float recover_current_time = 0.0f;
     public Vector2 initialDirection;
 
     private Game game;
+    [HideInInspector]
+    public Rigidbody2D rig;
 
     // Start is called before the first frame update
     void Start()
     {
         game = FindObjectOfType<Game>();
-
         if(infected)
             Infect();
 
         // apply velocity
-        Rigidbody2D rig = GetComponent<Rigidbody2D>();
+        rig = GetComponent<Rigidbody2D>();
         rig.velocity = initialDirection.normalized * speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // cap speed
+        if (rig.velocity.sqrMagnitude > maxSpeed * maxSpeed) {
+            rig.velocity = rig.velocity.normalized * maxSpeed;
+        }
     }
 
     public bool Recover() {
@@ -37,8 +43,13 @@ public class Human : MonoBehaviour
         if (recover_current_time > recover_time) {
             infected = false;
             recover_current_time = 0.0f;
-            Object mat = Resources.Load("Materials/mat_Blue");
-            GetComponent<SpriteRenderer>().material = mat as Material;
+            // change material
+            GetComponent<MeshRenderer>().material.color = Color.white;
+            CircleCollider2D[] colliders = GetComponents<CircleCollider2D>();
+            colliders[1].enabled = false;
+
+            //update infected count
+            game.infected_count--;
             return true;
         }
         return false;
@@ -46,10 +57,17 @@ public class Human : MonoBehaviour
 
     public void Infect()
     {
-        infected = true;
-        // change material
-        Object mat = Resources.Load("Materials/mat_Red");
-        GetComponent<SpriteRenderer>().material = mat as Material;
+        if (!infected) {
+            infected = true;
+            // change material
+            GetComponent<MeshRenderer>().material.color = Color.red;
+            // activate trigger collider
+            CircleCollider2D[] colliders = GetComponents<CircleCollider2D>();
+            colliders[1].enabled = true;
+
+            //update infected count
+            game.infected_count++;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -62,16 +80,35 @@ public class Human : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("Trigger");
-        if (infected) {
+        //Debug.Log("Trigger");
+        if (other.isTrigger == false) {
             Rigidbody2D other_rig = other.GetComponent<Rigidbody2D>();
             if (other_rig != null) {
                 Vector2 force = other.transform.position - transform.position;
-                other_rig.AddForce(force * attraction);
+                other_rig.AddForce(force.normalized * repulsion);
             }
             
         }
     }
+
+#if false   // no randomness
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (infected)
+        {
+            Human other_human = other.GetComponent<Human>();
+            if (other_human != null)
+            {
+                Debug.Log("Infecting");
+                // chance to infect
+                float rand = Random.Range(0.0f, 100.0f);
+                if (rand <= infectChance)
+                    other_human.Infect();
+            }
+
+        }
+    }
+#endif
 }
