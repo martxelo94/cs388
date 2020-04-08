@@ -30,7 +30,7 @@ public class SaveTheEconomy : MonoBehaviour
 
     private void OnDestroy()
     {
-        //if(game != null)
+        if(game.humans[0] != null)
         foreach (Human h in game.humans)
         {
             h.rig.velocity /= speedFactor;

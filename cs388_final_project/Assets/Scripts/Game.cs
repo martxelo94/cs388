@@ -13,10 +13,6 @@ public class Game : MonoBehaviour
     private bool is_throwing = false;
     [HideInInspector]
     public int infected_count = 0;
-    private bool used_ability_1 = false;
-    private bool used_ability_2 = false;
-    private bool used_ability_3 = false;
-    private bool used_ability_4 = false;
 
     // objects
     public List<Human> humans;
@@ -80,27 +76,15 @@ public class Game : MonoBehaviour
     }
 
     public void Ability_MutantVirus() {
-        if (used_ability_1)
-            return;
-        used_ability_1 = true;
         gameObject.AddComponent<MutantVirus>();
     }
     public  void Ability_PanicShoping() {
-        if (used_ability_2)
-            return;
-        used_ability_2 = true;
         gameObject.AddComponent<PanicShoping>();
     }
    public void Ability_SociallyIrresponsible() {
-        if (used_ability_3)
-            return;
-        used_ability_3 = true;
         gameObject.AddComponent<SociallyIrresponsible>();
     }
     public void Ability_SaveTheEconomy() {
-        if (used_ability_4)
-            return;
-        used_ability_4 = true;
         gameObject.AddComponent<SaveTheEconomy>();
     }
 
@@ -125,11 +109,7 @@ public class Game : MonoBehaviour
             // LOSE
         }
 
-        // INVOKE ABILITIES
-        if (Input.GetKeyDown(KeyCode.Alpha0)) {
-            // reset abilities
-            used_ability_1 = used_ability_2 = used_ability_3 = used_ability_4 = false;
-        }
+        // INVOKE ABILITIES (HAX)
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             Ability_MutantVirus();
             Debug.Log("1 MutantVirus");

@@ -23,9 +23,6 @@ public class Human : MonoBehaviour
         particles = GetComponent<ParticleSystem>();
         particles.Stop();
 
-        if (infected)
-            Infect();
-
         // apply velocity
         rig = GetComponent<Rigidbody2D>();
         rig.velocity = initialDirection;
@@ -104,10 +101,12 @@ public class Human : MonoBehaviour
                 Vector2 force = other.transform.position - transform.position;
                 other_human.rig.AddForce(force.normalized * game.repulsion);
                 // chance to infect
-                float rand = Random.Range(0.0f, 100.0f);
-                if (rand <= game.infectChance) {
-                    other_human.Infect();
-                    Debug.Log("Infecting by proximity");
+                if (infected) {
+                    float rand = Random.Range(0.0f, 100.0f);
+                    if (rand <= game.infectChance) {
+                        other_human.Infect();
+                        Debug.Log("Infecting by proximity");
+                    }
                 }
             }
         }
