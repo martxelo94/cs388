@@ -40,7 +40,7 @@ public class Human : MonoBehaviour
 
     public void EnableTriggerCollider(bool enable) {
         CircleCollider2D[] colliders = GetComponents<CircleCollider2D>();
-        colliders[1].enabled = false;
+        colliders[1].enabled = enable;
     }
 
     public bool Recover() {
@@ -98,6 +98,7 @@ public class Human : MonoBehaviour
             Human other_human = other.GetComponent<Human>();
             if (other_human != null)
             {
+                Debug.Log("Other human too close!");
                 Vector2 force = other.transform.position - transform.position;
                 other_human.rig.AddForce(force.normalized * game.repulsion);
                 // chance to infect

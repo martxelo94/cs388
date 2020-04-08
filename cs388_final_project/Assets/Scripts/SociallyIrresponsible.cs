@@ -13,11 +13,11 @@ public class SociallyIrresponsible : MonoBehaviour
     void Start()
     {
         game = FindObjectOfType<Game>();
+        game.repulsion *= -1;
 
         // activate trigger
         foreach (Human h in game.humans) {
             h.EnableTriggerCollider(true);
-            game.repulsion *= -1;
         }
 
     }
@@ -33,10 +33,12 @@ public class SociallyIrresponsible : MonoBehaviour
     private void OnDestroy()
     {
         // deactivate trigger
-        foreach (Human h in game.humans)
-        {
-            h.EnableTriggerCollider(false);
-            game.repulsion *= -1;
-        }
+        game.repulsion *= -1;
+        if (game.humans[0] != null)
+            foreach (Human h in game.humans)
+            {
+                if(!h.infected)
+                    h.EnableTriggerCollider(false);
+            }
     }
 }

@@ -8,11 +8,14 @@ public class Game : MonoBehaviour
     // game state
     public int infected_goal = -1;  // -1 means all infected
     public float game_time = 20.0f;
-    private float current_game_time = 0.0f;
+    [HideInInspector]
+    public float current_game_time = 0.0f;
     public int throws = 1;
     private bool is_throwing = false;
     [HideInInspector]
     public int infected_count = 0;
+    [HideInInspector]
+    public bool game_ended = false;
 
     // objects
     public List<Human> humans;
@@ -31,7 +34,7 @@ public class Game : MonoBehaviour
     public int getInfectedCount() { return infected_count; }
     public int getHealthyCount() { return humans.Count - infected_count; }
 
-    bool CompletedGoal() {
+    public bool CompletedGoal() {
         if (infected_goal < 0)
         {
             return getHealthyCount() == 0;
@@ -88,6 +91,20 @@ public class Game : MonoBehaviour
         gameObject.AddComponent<SaveTheEconomy>();
     }
 
+    public void ReplayLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ExitLevel() {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void NextLevel() {
+        int idx = SceneManager.GetActiveScene().buildIndex + 1;
+        idx = idx % SceneManager.sceneCount;
+
+        SceneManager.LoadScene(idx);
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -101,13 +118,7 @@ public class Game : MonoBehaviour
     {
         // update game time
         current_game_time += Time.deltaTime;
-        if (CompletedGoal()) {
-            // WIN
-            
-        }
-        if (current_game_time > game_time) {
-            // LOSE
-        }
+        
 
         // INVOKE ABILITIES (HAX)
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
