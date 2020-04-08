@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
@@ -106,6 +107,14 @@ public class Game : MonoBehaviour
         SceneManager.LoadScene(idx);
     }
 
+    bool IsPointerOverUIObject() {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = RawTouchPos();
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -152,7 +161,7 @@ public class Game : MonoBehaviour
         if(throws > 0 || throws < 0)
         {
             // INPUT LAUNCH
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
             {
                 Time.timeScale = 0.0f;
                 // spawn patient ZERO

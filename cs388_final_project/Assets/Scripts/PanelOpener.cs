@@ -24,7 +24,7 @@ public class PanelOpener : MonoBehaviour
     {
         infected_text.text = game.getInfectedCount().ToString();
         healthy_text.text = game.getHealthyCount().ToString();
-        time_text.text = ((int)game.current_game_time).ToString() + ":" + ((int)game.game_time).ToString();
+        time_text.text = ((int)(game.game_time - game.current_game_time)).ToString();
         throws_text.text = game.throws.ToString();
 
         // check win condition
