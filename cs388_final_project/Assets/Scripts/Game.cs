@@ -72,25 +72,25 @@ public class Game : MonoBehaviour
 
     }
 
-    void Ability_MutantVirus() {
+    public void Ability_MutantVirus() {
         if (used_ability_1)
             return;
         used_ability_1 = true;
         gameObject.AddComponent<MutantVirus>();
     }
-    void Ability_PanicShoping() {
+    public  void Ability_PanicShoping() {
         if (used_ability_2)
             return;
         used_ability_2 = true;
         gameObject.AddComponent<PanicShoping>();
     }
-    void Ability_SociallyIrresponsible() {
+   public void Ability_SociallyIrresponsible() {
         if (used_ability_3)
             return;
         used_ability_3 = true;
         gameObject.AddComponent<SociallyIrresponsible>();
     }
-    void Ability_SaveTheEconomy() {
+    public void Ability_SaveTheEconomy() {
         if (used_ability_4)
             return;
         used_ability_4 = true;
