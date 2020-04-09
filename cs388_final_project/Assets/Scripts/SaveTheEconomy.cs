@@ -5,6 +5,7 @@ using UnityEngine;
 public class SaveTheEconomy : MonoBehaviour
 {
     private Game game;
+    private PanelOpener panelOpener;
 
     public float duration = 10.0f;
     private float current_duration = 0.0f;
@@ -15,6 +16,8 @@ public class SaveTheEconomy : MonoBehaviour
     void Start()
     {
         game = FindObjectOfType<Game>();
+        panelOpener = FindObjectOfType<PanelOpener>();
+
         game.maxSpeed *= speedFactor;
         foreach (Human h in game.humans) {
             h.rig.velocity *= speedFactor;
@@ -23,6 +26,12 @@ public class SaveTheEconomy : MonoBehaviour
         AudioSource audio = Camera.main.GetComponent<AudioSource>();
         audio.clip = Resources.Load<AudioClip>("Sounds/Save-The-Economy");
         audio.PlayOneShot(audio.clip);
+
+        // deactivate buttons
+        foreach (UnityEngine.UI.Button b in panelOpener.buttons_to_deactivate)
+        {
+            b.interactable = false;
+        }
     }
 
     // Update is called once per frame
@@ -41,6 +50,14 @@ public class SaveTheEconomy : MonoBehaviour
             {
                 h.rig.velocity /= speedFactor;
             }
+        }
+        if (panelOpener != null)
+        {
+            foreach (UnityEngine.UI.Button b in panelOpener.buttons_to_deactivate)
+            {
+                b.interactable = true;
+            }
+            panelOpener.buttons_to_deactivate.Clear();
         }
     }
 }

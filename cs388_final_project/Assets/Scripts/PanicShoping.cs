@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PanicShoping : MonoBehaviour
 {
+    private PanelOpener panelOpener;
+
     Supermarket[] supers;
 
     public float duration = 10.0f;
@@ -12,6 +14,7 @@ public class PanicShoping : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        panelOpener = FindObjectOfType<PanelOpener>();
         supers = FindObjectsOfType<Supermarket>();
         foreach (Supermarket s in supers) {
             s.SetPushHumans(false);
@@ -20,6 +23,11 @@ public class PanicShoping : MonoBehaviour
         AudioSource audio = Camera.main.GetComponent<AudioSource>();
         audio.clip = Resources.Load<AudioClip>("Sounds/Panic-Shoping");
         audio.PlayOneShot(audio.clip);
+
+        // deactivate buttons
+        foreach (UnityEngine.UI.Button b in panelOpener.buttons_to_deactivate) {
+            b.interactable = false;
+        }
     }
 
     // Update is called once per frame
@@ -36,6 +44,15 @@ public class PanicShoping : MonoBehaviour
         {
             if(s != null)
                 s.SetPushHumans(true);
+        }
+        if (panelOpener != null)
+        {
+            // reactivate buttons
+            foreach (UnityEngine.UI.Button b in panelOpener.buttons_to_deactivate)
+            {
+                b.interactable = true;
+            }
+            panelOpener.buttons_to_deactivate.Clear();
         }
     }
 }

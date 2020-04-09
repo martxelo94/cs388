@@ -16,6 +16,14 @@ public class PanelOpener : MonoBehaviour
 
     private Game game;
 
+    [HideInInspector]
+    public List<UnityEngine.UI.Button> buttons_to_deactivate;
+
+
+    public void AddButtonToDeactivate(UnityEngine.UI.Button button)
+    {
+        buttons_to_deactivate.Add(button);
+    }
     private void Start()
     {
         game = FindObjectOfType<Game>();
