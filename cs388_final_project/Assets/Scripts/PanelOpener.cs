@@ -8,6 +8,7 @@ public class PanelOpener : MonoBehaviour
     public GameObject lose_panel;
     public GameObject stats_panel;
     public GameObject goal_panel;
+    public UnityEngine.UI.Text goal_text;
     public UnityEngine.UI.Text infected_text;
     public UnityEngine.UI.Text healthy_text;
     public UnityEngine.UI.Text time_text;
@@ -26,6 +27,13 @@ public class PanelOpener : MonoBehaviour
         healthy_text.text = game.getHealthyCount().ToString();
         time_text.text = ((int)(game.game_time - game.current_game_time)).ToString();
         throws_text.text = game.throws.ToString();
+        if (game.infected_goal < 0)
+        {
+            goal_text.text = "Infect all humans!";
+        }
+        else {
+            goal_text.text = "Infect " + game.infected_goal.ToString() + " humans!";
+        }
 
         // check win condition
         if (game.game_ended == false) {

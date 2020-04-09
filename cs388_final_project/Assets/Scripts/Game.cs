@@ -102,7 +102,7 @@ public class Game : MonoBehaviour
 
     public void NextLevel() {
         int idx = SceneManager.GetActiveScene().buildIndex + 1;
-        idx = idx % SceneManager.sceneCount;
+        idx = idx % SceneManager.sceneCountInBuildSettings;
 
         SceneManager.LoadScene(idx);
     }

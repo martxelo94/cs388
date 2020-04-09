@@ -21,23 +21,26 @@ public class Supermarket : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pushHumans == false) {
+        if (pushHumans == false)
+        {
             // pull humans
+            if(game != null)
             foreach (Human h in game.humans) {
                 Vector2 dir = transform.position - h.transform.position;
-                h.rig.velocity += dir.normalized * Time.deltaTime * game.speed;
+                h.rig.velocity += dir.normalized * Time.deltaTime * pushForce * game.speed / dir.magnitude;
             }
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (pushHumans) {
+        //if (pushHumans)
+        {
             if (other.isTrigger == false) {
                 Human h = other.GetComponent<Human>();
                 if (h != null) {
                     Vector2 dir = other.transform.position - transform.position;
-                    h.rig.velocity += dir.normalized * Time.deltaTime * game.speed;
+                    h.rig.velocity += dir.normalized * Time.deltaTime * pushForce * game.speed;
                     Debug.Log("PushHuman from Supermarket");
                 }
             }
@@ -46,7 +49,5 @@ public class Supermarket : MonoBehaviour
 
     public void SetPushHumans(bool push) {
         pushHumans = push;
-        GetComponent<BoxCollider2D>().enabled = !push;
-
     }
 }

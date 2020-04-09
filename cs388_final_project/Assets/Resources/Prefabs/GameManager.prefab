@@ -50,9 +50,11 @@ MonoBehaviour:
   infected_count: 0
   game_ended: 0
   humans: []
-  patientZeroPrefab: {fileID: 0}
-  slingPrefab: {fileID: 0}
-  repulsion: 100
+  patientZeroPrefab: {fileID: 1584638919762015969, guid: dc873dabd2ec4e94c95daba82143fd78,
+    type: 3}
+  slingPrefab: {fileID: 4199846963253979014, guid: d9038a18b65b2e34599ed1efcc71544d,
+    type: 3}
+  repulsion: 60
   speed: 1
   maxSpeed: 3
   infectChance: 0.1
