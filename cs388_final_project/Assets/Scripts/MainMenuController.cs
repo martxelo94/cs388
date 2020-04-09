@@ -8,6 +8,7 @@ public class MainMenuController : MonoBehaviour
 {
 
     public GameObject mainMenu;
+    public GameObject help_panel;
     public RawImage img;
     public bool fade_in = true;
     public string level_name = "Level0";
@@ -29,6 +30,15 @@ public class MainMenuController : MonoBehaviour
     {
         level_name = "MainMenu";
         StartCoroutine(FadeImage(fade_in));
+    }
+
+    public void Open_Help_Panel()
+    {
+        if (help_panel != null)
+        {
+            bool isActive = help_panel.activeSelf;
+            help_panel.SetActive(!isActive);
+        }
     }
 
 
