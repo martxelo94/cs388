@@ -20,6 +20,9 @@ public class SociallyIrresponsible : MonoBehaviour
             h.EnableTriggerCollider(true);
         }
 
+        AudioSource audio = Camera.main.GetComponent<AudioSource>();
+        audio.clip = Resources.Load<AudioClip>("Sounds/Socially-Irresponsible");
+        audio.PlayOneShot(audio.clip);
     }
 
     // Update is called once per frame
