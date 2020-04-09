@@ -1081,7 +1081,7 @@ PrefabInstance:
     - target: {fileID: 6566431398672020027, guid: 7a164acd40cc19245a3efc9459a8dcb0,
         type: 3}
       propertyPath: m_FontData.m_AlignByGeometry
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6566431399577115398, guid: 7a164acd40cc19245a3efc9459a8dcb0,
         type: 3}
