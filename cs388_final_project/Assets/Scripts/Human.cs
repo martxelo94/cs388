@@ -118,18 +118,20 @@ public class Human : MonoBehaviour
             Human other_human = other.GetComponent<Human>();
             if (other_human != null)
             {
-                // chance to infect
-                if (infected && !other_human.infected) {
+                if (!other_human.infected) {
                     Debug.Log("Other human too close!");
                     Vector2 force = other.transform.position - transform.position;
                     other_human.rig.AddForce(force.normalized * game.repulsion);
-
-                    float rand = Random.Range(0.0f, 100.0f);
-                    if (rand <= game.infectChance) {
-                        other_human.Infect();
-                        Debug.Log("Infecting by proximity");
+                    // chance to infect
+                    if (infected) {
+                        float rand = Random.Range(0.0f, 100.0f);
+                        if (rand <= game.infectChance) {
+                            other_human.Infect();
+                            Debug.Log("Infecting by proximity");
+                        }
                     }
                 }
+
             }
         }
     }
