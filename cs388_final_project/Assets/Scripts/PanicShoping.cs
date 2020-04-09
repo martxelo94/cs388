@@ -8,7 +8,7 @@ public class PanicShoping : MonoBehaviour
 
     Supermarket[] supers;
 
-    public float duration = 10.0f;
+    public float duration = 5.0f;
     private float current_duration = 0.0f;
 
     // Start is called before the first frame update

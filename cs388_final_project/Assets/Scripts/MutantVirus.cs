@@ -7,7 +7,7 @@ public class MutantVirus : MonoBehaviour
     private Game game;
     private PanelOpener panelOpener;
 
-    public float duration = 10.0f;
+    public float duration = 5.0f;
     private float current_duration = 0.0f;
 
     public float recoverFactor = 2.0f;

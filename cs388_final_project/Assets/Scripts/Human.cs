@@ -103,7 +103,7 @@ public class Human : MonoBehaviour
             Human other_human = other.GetComponent<Human>();
             if (other_human != null)
             {
-                if (infected) {
+                if (infected && !other_human.infected) {
                     AudioSource audio = Camera.main.GetComponent<AudioSource>();
                     audio.clip = Resources.Load<AudioClip>("Sounds/Repulsion");
                     audio.PlayOneShot(audio.clip);
@@ -119,7 +119,7 @@ public class Human : MonoBehaviour
             if (other_human != null)
             {
                 // chance to infect
-                if (infected) {
+                if (infected && !other_human.infected) {
                     Debug.Log("Other human too close!");
                     Vector2 force = other.transform.position - transform.position;
                     other_human.rig.AddForce(force.normalized * game.repulsion);
