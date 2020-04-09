@@ -25,6 +25,8 @@ public class Game : MonoBehaviour
     public LineRenderer slingPrefab;
     private LineRenderer slingInstance;
 
+    
+
     // human stats
     public float repulsion = 100.0f;
     public float speed = 1.0f;
