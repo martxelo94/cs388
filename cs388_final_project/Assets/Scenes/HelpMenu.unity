@@ -541,7 +541,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: tap to go to Main Menu
+  m_Text: Tap to Back to Main Menu
 --- !u!222 &1309599016
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -584,7 +584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 72, y: 155}
+  m_AnchoredPosition: {x: 86.5, y: 155}
   m_SizeDelta: {x: 77.4, y: 76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1364999271
@@ -937,8 +937,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "CONTROLS:\n-----------------\n\n2  shoot per level\n\nHOW TO PLAY:\n---------------------------------------------\n\n 
-    use the abilities to\n  infect all humans !\n\nABILITIES:\n---------------------------------------------\n\n-Save
+  m_Text: "CONTROLS:\n-----------------\n\nSling Shoot the Patient Zero\n\nHOW TO
+    PLAY:\n---------------------------------------------\n\n  use the abilities to\n 
+    infect all humans !\n\nABILITIES:\n---------------------------------------------\n\n-Save
     the economy: Humans move faster for some time\n\n-Panic Shoping: Humans go to
     the market compulsively\n\n-Socially irresponsible: Humans attract eachother
     for some time\n\n-Mutant virus: More recovery time needed\n---------------------------------------------"
