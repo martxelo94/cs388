@@ -19,11 +19,16 @@ public class MainMenuController : MonoBehaviour
         //SceneManager.LoadScene("PongGame");
     }
 
-    public void playGame2P()
+    public void LoadHelp()
     {
-        level_name = "Level0";
+        level_name = "HelpMenu";
         StartCoroutine(FadeImage(fade_in));
-        //SceneManager.LoadScene("PongGame2");
+    }
+
+    public void LoadMainMenu()
+    {
+        level_name = "MainMenu";
+        StartCoroutine(FadeImage(fade_in));
     }
 
 
@@ -57,15 +62,5 @@ public class MainMenuController : MonoBehaviour
             }
         }
         SceneManager.LoadScene(level_name);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {  
-    }
-
-    // Update is called once per frame
-    void Update()
-    {   
     }
 }
