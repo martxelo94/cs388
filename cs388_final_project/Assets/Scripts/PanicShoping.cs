@@ -16,6 +16,10 @@ public class PanicShoping : MonoBehaviour
         foreach (Supermarket s in supers) {
             s.SetPushHumans(false);
         }
+
+        AudioSource audio = Camera.main.GetComponent<AudioSource>();
+        audio.clip = Resources.Load<AudioClip>("Sounds/Panic-Shoping");
+        audio.PlayOneShot(audio.clip);
     }
 
     // Update is called once per frame

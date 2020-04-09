@@ -17,6 +17,10 @@ public class MutantVirus : MonoBehaviour
 
         game.recover_time *= recoverFactor;
 
+        AudioSource audio = Camera.main.GetComponent<AudioSource>();
+        audio.clip = Resources.Load<AudioClip>("Sounds/Mutant-Virus");
+        audio.PlayOneShot(audio.clip);
+
         Debug.Log("Mutant Virus Started");
     }
 

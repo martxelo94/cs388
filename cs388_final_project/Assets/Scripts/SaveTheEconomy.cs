@@ -19,6 +19,10 @@ public class SaveTheEconomy : MonoBehaviour
         foreach (Human h in game.humans) {
             h.rig.velocity *= speedFactor;
         }
+
+        AudioSource audio = Camera.main.GetComponent<AudioSource>();
+        audio.clip = Resources.Load<AudioClip>("Sounds/Save-The-Economy");
+        audio.PlayOneShot(audio.clip);
     }
 
     // Update is called once per frame
@@ -31,11 +35,12 @@ public class SaveTheEconomy : MonoBehaviour
 
     private void OnDestroy()
     {
-        game.maxSpeed /= speedFactor;
-        if (game.humans[0] != null)
-        foreach (Human h in game.humans)
-        {
-            h.rig.velocity /= speedFactor;
+        if (game != null) {
+            game.maxSpeed /= speedFactor;
+            foreach (Human h in game.humans)
+            {
+                h.rig.velocity /= speedFactor;
+            }
         }
     }
 }

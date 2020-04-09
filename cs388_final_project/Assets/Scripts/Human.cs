@@ -78,6 +78,10 @@ public class Human : MonoBehaviour
             
             //update infected count
             game.infected_count++;
+
+            AudioSource audio = Camera.main.GetComponent<AudioSource>();
+            audio.clip = Resources.Load<AudioClip>("Sounds/Cof");
+            audio.PlayOneShot(audio.clip);
         }
     }
 
@@ -91,6 +95,22 @@ public class Human : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.isTrigger == false)
+        {
+            Human other_human = other.GetComponent<Human>();
+            if (other_human != null)
+            {
+                if (infected) {
+                    AudioSource audio = Camera.main.GetComponent<AudioSource>();
+                    audio.clip = Resources.Load<AudioClip>("Sounds/Repulsion");
+                    audio.PlayOneShot(audio.clip);
+                }
+            }
+        }
+    }
     private void OnTriggerStay2D(Collider2D other)
     {
         //Debug.Log("Trigger");
@@ -98,11 +118,12 @@ public class Human : MonoBehaviour
             Human other_human = other.GetComponent<Human>();
             if (other_human != null)
             {
-                Debug.Log("Other human too close!");
-                Vector2 force = other.transform.position - transform.position;
-                other_human.rig.AddForce(force.normalized * game.repulsion);
                 // chance to infect
                 if (infected) {
+                    Debug.Log("Other human too close!");
+                    Vector2 force = other.transform.position - transform.position;
+                    other_human.rig.AddForce(force.normalized * game.repulsion);
+
                     float rand = Random.Range(0.0f, 100.0f);
                     if (rand <= game.infectChance) {
                         other_human.Infect();
