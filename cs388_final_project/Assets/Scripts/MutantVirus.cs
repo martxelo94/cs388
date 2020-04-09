@@ -15,9 +15,7 @@ public class MutantVirus : MonoBehaviour
     {
         game = FindObjectOfType<Game>();
 
-        foreach (Human h in game.humans) {
-            h.recover_time *= recoverFactor;
-        }
+        game.recover_time *= recoverFactor;
 
         Debug.Log("Mutant Virus Started");
     }
@@ -32,10 +30,7 @@ public class MutantVirus : MonoBehaviour
 
     private void OnDestroy()
     {
-        foreach (Human h in game.humans)
-        {
-            h.recover_time /= recoverFactor;
-        }
+        game.recover_time /= recoverFactor;
         Debug.Log("Mutant Virus Ended");
     }
 }

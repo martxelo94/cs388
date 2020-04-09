@@ -1,34 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour
 {
+    // game state
+    public int infected_goal = -1;  // -1 means all infected
     public float game_time = 20.0f;
-    private float current_game_time = 0.0f;
+    [HideInInspector]
+    public float current_game_time = 0.0f;
     public int throws = 1;
     private bool is_throwing = false;
+    [HideInInspector]
+    public int infected_count = 0;
+    [HideInInspector]
+    public bool game_ended = false;
+
+    // objects
     public List<Human> humans;
     public Human patientZeroPrefab;
     private Human patientZeroInstance;
     public LineRenderer slingPrefab;
     private LineRenderer slingInstance;
 
-    public int infected_goal = -1;  // -1 means all infected
-
-    [HideInInspector]
-    public int infected_count = 0;
+    // human stats
+    public float repulsion = 100.0f;
+    public float speed = 1.0f;
+    public float maxSpeed = 3.0f;
+    public float infectChance = 0.1f;
+    public float recover_time = 5.0f;
 
     public int getInfectedCount() { return infected_count; }
     public int getHealthyCount() { return humans.Count - infected_count; }
 
-    private bool used_ability_1 = false;
-    private bool used_ability_2 = false;
-    private bool used_ability_3 = false;
-    private bool used_ability_4 = false;
-
-    bool CompletedGoal() {
+    public bool CompletedGoal() {
         if (infected_goal < 0)
         {
             return getHealthyCount() == 0;
@@ -73,30 +80,40 @@ public class Game : MonoBehaviour
     }
 
     public void Ability_MutantVirus() {
-        if (used_ability_1)
-            return;
-        used_ability_1 = true;
         gameObject.AddComponent<MutantVirus>();
     }
     public  void Ability_PanicShoping() {
-        if (used_ability_2)
-            return;
-        used_ability_2 = true;
         gameObject.AddComponent<PanicShoping>();
     }
    public void Ability_SociallyIrresponsible() {
-        if (used_ability_3)
-            return;
-        used_ability_3 = true;
         gameObject.AddComponent<SociallyIrresponsible>();
     }
     public void Ability_SaveTheEconomy() {
-        if (used_ability_4)
-            return;
-        used_ability_4 = true;
         gameObject.AddComponent<SaveTheEconomy>();
     }
 
+    public void ReplayLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void ExitLevel() {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void NextLevel() {
+        int idx = SceneManager.GetActiveScene().buildIndex + 1;
+        idx = idx % SceneManager.sceneCountInBuildSettings;
+
+        SceneManager.LoadScene(idx);
+    }
+
+    bool IsPointerOverUIObject() {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = RawTouchPos();
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -110,19 +127,9 @@ public class Game : MonoBehaviour
     {
         // update game time
         current_game_time += Time.deltaTime;
-        if (CompletedGoal()) {
-            // WIN
-            
-        }
-        if (current_game_time > game_time) {
-            // LOSE
-        }
+        
 
-        // INVOKE ABILITIES
-        if (Input.GetKeyDown(KeyCode.Alpha0)) {
-            // reset abilities
-            used_ability_1 = used_ability_2 = used_ability_3 = used_ability_4 = false;
-        }
+        // INVOKE ABILITIES (HAX)
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             Ability_MutantVirus();
             Debug.Log("1 MutantVirus");
@@ -154,11 +161,8 @@ public class Game : MonoBehaviour
         if(throws > 0 || throws < 0)
         {
             // INPUT LAUNCH
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
             {
-
-
-
                 Time.timeScale = 0.0f;
                 // spawn patient ZERO
                 Vector2 pos2D = TouchPos();
@@ -190,20 +194,13 @@ public class Game : MonoBehaviour
             {
                 Time.timeScale = 1.0f;
                 if (is_throwing) {
-                    if (!InputCancel())
-                    {
-                        // get velocity
-                        Vector2 v = slingInstance.GetPosition(0) - slingInstance.GetPosition(1);
-                        Rigidbody2D rig = patientZeroInstance.GetComponent<Rigidbody2D>();
-                        rig.velocity = v;
+                    // get velocity
+                    Vector2 v = slingInstance.GetPosition(0) - slingInstance.GetPosition(1);
+                    Rigidbody2D rig = patientZeroInstance.GetComponent<Rigidbody2D>();
+                    rig.velocity = v;
 
-                        patientZeroInstance.Infect();
-                        humans.Add(patientZeroInstance);
-
-                    }
-                    else {
-                       Destroy(patientZeroInstance.gameObject);
-                    }
+                    patientZeroInstance.Infect();
+                    humans.Add(patientZeroInstance);
                     Destroy(slingInstance.gameObject);
 
                     // update throws
@@ -213,6 +210,11 @@ public class Game : MonoBehaviour
                 }
             }
 
+            if (InputCancel() && is_throwing) {
+                Destroy(patientZeroInstance.gameObject);
+                Destroy(slingInstance.gameObject);
+                is_throwing = false;
+            }
         }
     }
 }

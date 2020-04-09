@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Human : MonoBehaviour
 {
-    public float repulsion = 100.0f;
-    public float speed = 1.0f;
-    public float maxSpeed = 3.0f;
-    public float infectChance = 0.1f;
     public bool infected = false;
-    public float recover_time = 5.0f;
     private float recover_current_time = 0.0f;
     public Vector2 initialDirection;
 
@@ -17,27 +12,27 @@ public class Human : MonoBehaviour
     [HideInInspector]
     public Rigidbody2D rig;
 
+    private ParticleSystem particles;
+
     // Start is called before the first frame update
     void Start()
     {
         game = FindObjectOfType<Game>();
 
         //disable particle emmiter
-        ParticleSystem ps = GetComponent<ParticleSystem>();
-        ps.Stop();
-
-        if (infected)
-            Infect();
+        particles = GetComponent<ParticleSystem>();
+        particles.Stop();
 
         // apply velocity
         rig = GetComponent<Rigidbody2D>();
-        rig.velocity = initialDirection.normalized * speed;
+        rig.velocity = initialDirection;
     }
 
     // Update is called once per frame
     void Update()
     {
         // cap speed
+        float maxSpeed = game.maxSpeed;
         if (rig.velocity.sqrMagnitude > maxSpeed * maxSpeed) {
             rig.velocity = rig.velocity.normalized * maxSpeed;
         }
@@ -45,11 +40,13 @@ public class Human : MonoBehaviour
 
     public void EnableTriggerCollider(bool enable) {
         CircleCollider2D[] colliders = GetComponents<CircleCollider2D>();
-        colliders[1].enabled = false;
+        colliders[1].enabled = enable;
     }
 
     public bool Recover() {
         recover_current_time += Time.deltaTime;
+        float recover_time = game.recover_time;
+        particles.emissionRate = recover_time - recover_current_time;
         if (recover_current_time > recover_time) {
             infected = false;
             recover_current_time = 0.0f;
@@ -58,8 +55,7 @@ public class Human : MonoBehaviour
             EnableTriggerCollider(false);
 
             //disable particle emmiter
-            ParticleSystem ps = GetComponent<ParticleSystem>();
-            ps.Stop();
+            particles.Stop();
 
             //update infected count
             game.infected_count--;
@@ -77,9 +73,9 @@ public class Human : MonoBehaviour
             // activate trigger collider
             EnableTriggerCollider(true);
             //activate particle emmiter
-            ParticleSystem ps = GetComponent<ParticleSystem>();
-            ps.Play();
-
+            particles.emissionRate = game.recover_time;
+            particles.Play();
+            
             //update infected count
             game.infected_count++;
         }
@@ -99,31 +95,21 @@ public class Human : MonoBehaviour
     {
         //Debug.Log("Trigger");
         if (other.isTrigger == false) {
-            Rigidbody2D other_rig = other.GetComponent<Rigidbody2D>();
-            if (other_rig != null) {
-                Vector2 force = other.transform.position - transform.position;
-                other_rig.AddForce(force.normalized * repulsion);
-            }
-            
-        }
-    }
-
-#if false   // no randomness
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (infected)
-        {
             Human other_human = other.GetComponent<Human>();
             if (other_human != null)
             {
-                Debug.Log("Infecting");
+                Debug.Log("Other human too close!");
+                Vector2 force = other.transform.position - transform.position;
+                other_human.rig.AddForce(force.normalized * game.repulsion);
                 // chance to infect
-                float rand = Random.Range(0.0f, 100.0f);
-                if (rand <= infectChance)
-                    other_human.Infect();
+                if (infected) {
+                    float rand = Random.Range(0.0f, 100.0f);
+                    if (rand <= game.infectChance) {
+                        other_human.Infect();
+                        Debug.Log("Infecting by proximity");
+                    }
+                }
             }
-
         }
     }
-#endif
 }

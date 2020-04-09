@@ -15,6 +15,7 @@ public class SaveTheEconomy : MonoBehaviour
     void Start()
     {
         game = FindObjectOfType<Game>();
+        game.maxSpeed *= speedFactor;
         foreach (Human h in game.humans) {
             h.rig.velocity *= speedFactor;
         }
@@ -30,7 +31,8 @@ public class SaveTheEconomy : MonoBehaviour
 
     private void OnDestroy()
     {
-        //if(game != null)
+        game.maxSpeed /= speedFactor;
+        if (game.humans[0] != null)
         foreach (Human h in game.humans)
         {
             h.rig.velocity /= speedFactor;
