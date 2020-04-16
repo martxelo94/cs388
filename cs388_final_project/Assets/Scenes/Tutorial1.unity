@@ -161,7 +161,7 @@ PrefabInstance:
     - target: {fileID: 1584638919762015970, guid: dc873dabd2ec4e94c95daba82143fd78,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.39
+      value: -3.74
       objectReference: {fileID: 0}
     - target: {fileID: 1584638919762015970, guid: dc873dabd2ec4e94c95daba82143fd78,
         type: 3}
@@ -492,8 +492,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -73.3, y: 103.9}
-  m_SizeDelta: {x: 339.39996, y: 32.5}
+  m_AnchoredPosition: {x: -74.025, y: -0.00019455}
+  m_SizeDelta: {x: 444.15, y: 431.34}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1440466626
 MonoBehaviour:
@@ -527,6 +527,11 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'TUTORIAL
+
+
+
+    Throw on the screen to shoot and infect the human
+
 
 '
 --- !u!222 &1440466627
@@ -687,6 +692,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -22.000015
       objectReference: {fileID: 0}
+    - target: {fileID: 6566431400113250930, guid: 7a164acd40cc19245a3efc9459a8dcb0,
+        type: 3}
+      propertyPath: tutorial_panel
+      value: 
+      objectReference: {fileID: 1895067658}
     - target: {fileID: 6566431400113250931, guid: 7a164acd40cc19245a3efc9459a8dcb0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1050,8 +1060,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2, y: 211.8}
-  m_SizeDelta: {x: -183.9, y: -564.1}
+  m_AnchoredPosition: {x: -2, y: 140.92}
+  m_SizeDelta: {x: -183.9, y: -422.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1895067660
 MonoBehaviour:
