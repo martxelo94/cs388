@@ -11,11 +11,11 @@ public class MainMenuController : MonoBehaviour
     public GameObject help_panel;
     public RawImage img;
     public bool fade_in = true;
-    public string level_name = "Level0";
+    public string level_name = "Tutorial1";
 
     public void playGame()
     {
-        level_name = "Level0";
+        level_name = "Tutorial1";
         StartCoroutine(FadeImage(fade_in));
         //SceneManager.LoadScene("PongGame");
     }

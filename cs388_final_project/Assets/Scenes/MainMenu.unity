@@ -1245,7 +1245,7 @@ MonoBehaviour:
   help_panel: {fileID: 56625933}
   img: {fileID: 1239731872}
   fade_in: 1
-  level_name: Level0
+  level_name: Tutorial1
 --- !u!1 &1420218003
 GameObject:
   m_ObjectHideFlags: 0
