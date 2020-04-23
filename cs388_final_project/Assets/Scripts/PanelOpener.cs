@@ -8,6 +8,7 @@ public class PanelOpener : MonoBehaviour
     public GameObject lose_panel;
     public GameObject stats_panel;
     public GameObject goal_panel;
+    public GameObject tutorial_panel;
     public UnityEngine.UI.Text goal_text;
     public UnityEngine.UI.Text infected_text;
     public UnityEngine.UI.Text healthy_text;
@@ -47,12 +48,27 @@ public class PanelOpener : MonoBehaviour
         if (game.game_ended == false) {
             if (game.CompletedGoal())
             {
-                // WIN
-                win_panel.SetActive(true);
+                //close tutorial panel if exist
+                if (tutorial_panel != null)
+                {
+                    tutorial_panel.SetActive(false);
+                }
+
+
+                 // WIN
+                 win_panel.SetActive(true);
                 game.game_ended = true;
             }
             else if (game.current_game_time > game.game_time)
             {
+
+                //close tutorial panel if exist
+                if (tutorial_panel != null)
+                {
+                    tutorial_panel.SetActive(false);
+                }
+
+
                 // LOSE
                 lose_panel.SetActive(true);
                 time_text.color = Color.red;

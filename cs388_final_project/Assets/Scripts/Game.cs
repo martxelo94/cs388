@@ -34,6 +34,9 @@ public class Game : MonoBehaviour
     public float infectChance = 0.1f;
     public float recover_time = 5.0f;
 
+    // tutorial info
+    public string tutorial_name = "Tutorial1";
+
     public int getInfectedCount() { return infected_count; }
     public int getHealthyCount() { return humans.Count - infected_count; }
 
@@ -72,7 +75,7 @@ public class Game : MonoBehaviour
     bool InputCancel()
     {
         if (Input.touchCount > 0)
-        {
+        {                           
             return Input.touchCount == 2;
         }
         else {
@@ -107,6 +110,11 @@ public class Game : MonoBehaviour
         idx = idx % SceneManager.sceneCountInBuildSettings;
 
         SceneManager.LoadScene(idx);
+    }
+
+    public void NextTutorial()
+    {
+        SceneManager.LoadScene(tutorial_name);
     }
 
     bool IsPointerOverUIObject() {
