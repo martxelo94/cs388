@@ -178,7 +178,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
@@ -272,7 +272,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.75}
   m_AnchorMax: {x: 0, y: 0.75}
-  m_AnchoredPosition: {x: 165.99997, y: 0.17999}
+  m_AnchoredPosition: {x: 165.99997, y: 0.17999268}
   m_SizeDelta: {x: 296.1, y: 309.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &286558050 stripped

@@ -326,10 +326,10 @@ RectTransform:
   m_Father: {fileID: 1725041089}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 254.10004, y: 0}
-  m_SizeDelta: {x: -176.30002, y: -381.52002}
+  m_AnchorMin: {x: 1, y: 0.6}
+  m_AnchorMax: {x: 1, y: 0.6}
+  m_AnchoredPosition: {x: 79, y: -4.4}
+  m_SizeDelta: {x: 135.8, y: 124.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &241694306
 MonoBehaviour:
@@ -929,8 +929,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.3, y: 3.6}
-  m_SizeDelta: {x: 102, y: 94.5}
+  m_AnchoredPosition: {x: 0.00001812, y: 0.012525}
+  m_SizeDelta: {x: 135.8, y: 132.97}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1155929226
 MonoBehaviour:
@@ -952,23 +952,20 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 24
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
+  m_Text: 'Select  button  3
 
-    Select  button  3
-
-
-    Mutant Virus'
+    Save the economy'
 --- !u!222 &1155929227
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1116,10 +1113,10 @@ RectTransform:
   m_Father: {fileID: 1821450610}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -74.00002, y: 153.2}
-  m_SizeDelta: {x: -183.9, y: -396.18}
+  m_AnchorMin: {x: 0, y: 0.75}
+  m_AnchorMax: {x: 0, y: 0.75}
+  m_AnchoredPosition: {x: 165.99997, y: 5.899994}
+  m_SizeDelta: {x: 296.1, y: 298.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1753716332
 PrefabInstance:
@@ -1760,7 +1757,8 @@ MonoBehaviour:
     Select the button ability
 
 
-    Use it to boost you virus!
+    Use it to speed up the
+    people
 
 '
 --- !u!222 &2060139849
