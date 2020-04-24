@@ -495,10 +495,10 @@ RectTransform:
   m_Father: {fileID: 1895067659}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -74.025, y: -0.00019455}
-  m_SizeDelta: {x: 444.15, y: 431.34}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -0.024993896, y: -145.00018}
+  m_SizeDelta: {x: 296.15, y: 433.33997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1440466626
 MonoBehaviour:
@@ -535,7 +535,8 @@ MonoBehaviour:
 
 
 
-    Throw on the screen to shoot and infect the human
+    Touch and slide on the screen to shoot and infect the
+    human
 
 
 '
@@ -1088,10 +1089,10 @@ RectTransform:
   m_Father: {fileID: 1647683045}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2, y: 185.67}
-  m_SizeDelta: {x: -183.9, y: -511.86}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -2, y: -186.9}
+  m_SizeDelta: {x: 296.1, y: 233.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1895067660
 MonoBehaviour:
